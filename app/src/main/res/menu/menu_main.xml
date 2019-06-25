@@ -3,11 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/addImage"
-        android:title="Add Image"
-        app:showAsAction="always"
-        android:icon="@drawable/ic_action_image"/>
+        android:title="ADD ENTRY"
+        app:showAsAction="always"/>
+        //android:icon="@drawable/ic_action_image"/>
     <!--other menu items-->
     <item
         android:id="@+id/settings"
         android:title="Setting"/>
 </menu>
+
