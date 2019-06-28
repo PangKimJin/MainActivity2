@@ -2,6 +2,7 @@ package com.example.mainactivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,17 +13,29 @@ public class UserInputForm extends AppCompatActivity {
     Database db;
     EditText editItem, editPrice, editQuantity;
     Button btnAddItem;
+    Button btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_input_form);
-
+        db = new Database(this);
         editItem = (EditText) findViewById(R.id.editText_Item);
         editQuantity = (EditText) findViewById(R.id.editText_Quantity);
         editPrice = (EditText) findViewById(R.id.editText_Price);
         btnAddItem = (Button) findViewById(R.id.button_add);
+        btnBack =  findViewById(R.id.btn_back);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                backToShopList();
+            }
+        });
         addData();
+    }
+    public void backToShopList() {
+        Intent intent = new Intent(this, shopping_list_display.class);
+        startActivity(intent);
     }
 
     public void addData() {
