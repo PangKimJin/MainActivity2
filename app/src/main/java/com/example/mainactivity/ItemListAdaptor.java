@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ItemListAdaptor extends ArrayAdapter<Item> {
     private static final String TAG = "ItemListAdaptor";
@@ -35,7 +34,7 @@ public class ItemListAdaptor extends ArrayAdapter<Item> {
         int quantity = getItem(position).getQuantity();
         double price = getItem(position).getPrice();
 
-        Item item = new Item(id, name, quantity, price);
+        Item item = new Item(id, name, quantity, price, 1);
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
 

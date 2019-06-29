@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -32,10 +33,19 @@ public class CreateLists extends AppCompatActivity {
             }
         });
 
-        ArrayList<List> Lists = populate();
+        final ArrayList<List> Lists = populate();
 
         ShopListAdaptor adaptor = new ShopListAdaptor(this, R.layout.create_lists_adaptor, Lists);
         shopListView.setAdapter(adaptor);
+        shopListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String tempListView =  Lists.get(i).getId() + "";
+                Intent intent = new Intent(CreateLists.this, shopping_list_display.class);
+                intent.putExtra("ListViewClickValue", tempListView);
+                startActivity(intent);
+            }
+        });
 
     }
     public void openCreateNewList() {
@@ -48,8 +58,8 @@ public class CreateLists extends AppCompatActivity {
         if (res.getCount() == 0) {
             //show empty list
 
-            List empty = new List(0, "", "");
-            list.add(empty);
+
+
             return list;
         } else {
             while (res.moveToNext()) {

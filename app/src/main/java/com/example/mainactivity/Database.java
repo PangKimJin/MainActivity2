@@ -18,6 +18,7 @@ public class Database extends SQLiteOpenHelper {
     public static final String COL_2 = "Item_Name";
     public static final String COL_3 = "Quantity";
     public static final String COL_4 = "Expected_Price";
+    public static final String COL_5 = "List_ID";
     public static final String ID = "ID";
     public static final String NAME = "List_Name";
     public static final String CREATED_DATE  = "Created_Date";
@@ -32,7 +33,7 @@ public class Database extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("Create Table " + TABLE_NAME +
                 "(ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "Item_Name TEXT, Quantity INTEGER, Expected_Price DOUBLE)");
+                "Item_Name TEXT, Quantity INTEGER, Expected_Price DOUBLE, List_ID INTEGER)");
         db.execSQL("Create Table " + TABLE_LISTS +
                 "(ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "List_Name TEXT, Created_Date DOUBLE)");
@@ -44,12 +45,13 @@ public class Database extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertData1(String item, int quantity, double price) {
+    public boolean insertData1(String item, int quantity, double price, int listID) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_2, item);
         contentValues.put(COL_3, quantity);
         contentValues.put(COL_4, price);
+        contentValues.put(COL_5, listID);
         long result = db.insert(TABLE_NAME, null, contentValues);
         if (result == -1) {
             return false;

@@ -5,12 +5,14 @@ public class Item {
     private int quantity;
     private double price;
     private int id;
+    private int listID;
 
-    public Item(int id, String name, int quantity, double price) {
+    public Item(int id, String name, int quantity, double price, int listID) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
         this.price = price;
+        this.listID = listID;
     }
 
     public int getId() {
@@ -39,6 +41,10 @@ public class Item {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public int getListID() {
+        return this.listID;
     }
 
     public double calculatePrice() {

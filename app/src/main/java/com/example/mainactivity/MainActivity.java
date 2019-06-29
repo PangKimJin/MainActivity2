@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openUserInput() {
-        Intent intent = new Intent(this, UserInputForm.class);
+        Intent intent = new Intent(this, CreateLists.class);
         startActivity(intent);
     }
 
