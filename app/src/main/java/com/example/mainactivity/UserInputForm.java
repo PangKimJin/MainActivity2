@@ -43,7 +43,7 @@ public class UserInputForm extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        boolean isInserted = db.insertData(editItem.getText().toString(),
+                        boolean isInserted = db.insertData1(editItem.getText().toString(),
                                 Integer.parseInt(editQuantity.getText().toString()),
                                 Double.parseDouble(editPrice.getText().toString()));
                         if (isInserted) {

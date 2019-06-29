@@ -8,13 +8,20 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.util.Date;
+
 public class Database extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME = "Shop_Items.db";
+    public static final String DATABASE_NAME = "Shop_List.db";
     public static final String TABLE_NAME = "Shopping_List";
+    public static final String TABLE_LISTS = "Lists";
     public static final String COL_1 = "ID";
     public static final String COL_2 = "Item_Name";
     public static final String COL_3 = "Quantity";
     public static final String COL_4 = "Expected_Price";
+    public static final String ID = "ID";
+    public static final String NAME = "List_Name";
+    public static final String CREATED_DATE  = "Created_Date";
+
 
     public Database(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -26,6 +33,9 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL("Create Table " + TABLE_NAME +
                 "(ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "Item_Name TEXT, Quantity INTEGER, Expected_Price DOUBLE)");
+        db.execSQL("Create Table " + TABLE_LISTS +
+                "(ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "List_Name TEXT, Created_Date DOUBLE)");
     }
 
     @Override
@@ -34,7 +44,7 @@ public class Database extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertData(String item, int quantity, double price) {
+    public boolean insertData1(String item, int quantity, double price) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_2, item);
@@ -47,9 +57,29 @@ public class Database extends SQLiteOpenHelper {
             return true;
         }
     }
-    public Cursor getAllData() {
+    public Cursor getAllData1() {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("select * from " + TABLE_NAME, null);
         return res;
     }
+
+    public boolean insertData2(String item, String date) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(NAME, item);
+        contentValues.put(CREATED_DATE, date);
+
+        long result = db.insert(TABLE_LISTS, null, contentValues);
+        if (result == -1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    public Cursor getAllData2() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor result = db.rawQuery("select * from " + TABLE_LISTS, null);
+        return result;
+    }
+
 }
