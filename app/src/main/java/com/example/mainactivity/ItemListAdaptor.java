@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class ItemListAdaptor extends ArrayAdapter<Item> {
@@ -46,7 +47,9 @@ public class ItemListAdaptor extends ArrayAdapter<Item> {
         txtId.setText(Integer.toString(id));
         txtName.setText(name);
         txtQuantity.setText(Integer.toString(quantity));
-        String total = Double.toString(item.calculatePrice());
+        DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(2);
+        String total = "$" + df.format(Double.toString(item.calculatePrice()));
         txtPrice.setText(total);
 
         return convertView;
