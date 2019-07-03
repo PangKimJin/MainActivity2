@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -28,9 +29,18 @@ public class shopping_list_display extends AppCompatActivity {
             }
         });
         ListView shopListView = findViewById(R.id.shopListView);
-        ArrayList shopList = populate(Integer.parseInt(shopListId));
+        final ArrayList<Item> shopList = populate(Integer.parseInt(shopListId));
         ItemListAdaptor adaptor = new ItemListAdaptor(this, R.layout.shoppinglist_adapter, shopList);
         shopListView.setAdapter(adaptor);
+        shopListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String tempListView =  shopList.get(i).getId() + "";
+                Intent intent = new Intent(shopping_list_display.this, ItemDisplay.class);
+                intent.putExtra("ListViewClickValue", tempListView);
+                startActivity(intent);
+            }
+        });
 
     }
     public void openUserInputForm(String shopListID) {

@@ -49,7 +49,7 @@ public class ItemListAdaptor extends ArrayAdapter<Item> {
         txtQuantity.setText(Integer.toString(quantity));
         DecimalFormat df = new DecimalFormat();
         df.setMaximumFractionDigits(2);
-        String total = "$" + df.format(Double.toString(item.calculatePrice()));
+        String total = "$" + df.format(item.calculatePrice());
         txtPrice.setText(total);
 
         return convertView;
