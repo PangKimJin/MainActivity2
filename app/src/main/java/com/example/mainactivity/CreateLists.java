@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -19,6 +20,8 @@ import java.util.Date;
 public class CreateLists extends AppCompatActivity {
     Database db;
     Button btn;
+    Button btnBack;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +29,14 @@ public class CreateLists extends AppCompatActivity {
         db = new Database(this);
         ListView shopListView = findViewById(R.id.Lists);
         btn = findViewById(R.id.button_create);
+        btnBack = findViewById(R.id.button_back);
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                backToHomePage();
+            }
+        });
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,6 +58,12 @@ public class CreateLists extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    public void backToHomePage() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
     public void openCreateNewList() {
         Intent intent = new Intent(this, Create_New_List.class);

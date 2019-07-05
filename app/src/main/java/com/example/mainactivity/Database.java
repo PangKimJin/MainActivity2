@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.location.Location;
 
 import androidx.annotation.Nullable;
 
@@ -13,15 +14,22 @@ import java.util.Date;
 public class Database extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "Shop_List.db";
     public static final String TABLE_NAME = "Shopping_List";
-    public static final String TABLE_LISTS = "Lists";
     public static final String COL_1 = "ID";
     public static final String COL_2 = "Item_Name";
     public static final String COL_3 = "Quantity";
     public static final String COL_4 = "Expected_Price";
     public static final String COL_5 = "List_ID";
+
+    public static final String TABLE_LISTS = "Lists";
     public static final String ID = "ID";
     public static final String NAME = "List_Name";
     public static final String CREATED_DATE  = "Created_Date";
+
+    public static final String TABLE_EXPENDITURE = "Expenditure";
+    public static final String Number = "id";
+    public static final String EXPENDITURE = "List_Name";
+    public static final String LOCATION = "List_Name";
+    public static final String DATE  = "Created_Date";
 
 
     public Database(@Nullable Context context) {
@@ -77,6 +85,12 @@ public class Database extends SQLiteOpenHelper {
         return true;
     }
 
+    public Integer deleteList(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_LISTS, "ID = ?", new String[] {id});
+
+    }
+
     public boolean insertData2(String item, String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -98,6 +112,31 @@ public class Database extends SQLiteOpenHelper {
     public Integer deleteItem(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(TABLE_NAME, "ID = ?", new String[] {id});
+
+    }
+
+    public boolean insertData3(String item, String location, String date) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(EXPENDITURE, item);
+        contentValues.put(LOCATION, location);
+        contentValues.put(DATE, date);
+
+        long result = db.insert(TABLE_EXPENDITURE, null, contentValues);
+        if (result == -1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    public Cursor getAllData3() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor result = db.rawQuery("select * from " + TABLE_EXPENDITURE, null);
+        return result;
+    }
+    public Integer deleteExpenditure(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_EXPENDITURE, "ID = ?", new String[] {id});
 
     }
 }

@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -18,6 +19,7 @@ public class shopping_list_display extends AppCompatActivity {
     Button btnAdd;
     TextView TextViewTitle;
     Button btnBack;
+    Button btnDelete;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +28,8 @@ public class shopping_list_display extends AppCompatActivity {
         btnAdd = findViewById(R.id.button_To_User_Input);
         btnBack = findViewById(R.id.button_back);
         TextViewTitle = findViewById(R.id.textViewTitle);
+        btnDelete = findViewById(R.id.button_delete);
+
         final String shopListId = getIntent().getStringExtra("ListViewClickValue");
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +56,24 @@ public class shopping_list_display extends AppCompatActivity {
             }
         });
         back();
+        DeleteItem(shopListId);
 
+    }
+
+    public void DeleteItem(final String id) {
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int deletedRow = db.deleteList(id);
+                backToShopList();
+                if(deletedRow > 0) {
+                    Toast.makeText(shopping_list_display.this, "List Successfully Deleted", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(shopping_list_display.this, "List Deletion Unsuccessful", Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
     }
 
     public void back() {

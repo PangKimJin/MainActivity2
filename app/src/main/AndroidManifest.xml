@@ -12,17 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ItemDisplay"></activity>
+        <activity android:name=".MyPastExpenditure" />
+        <activity android:name=".ItemDisplay" />
         <activity android:name=".Create_New_List" />
         <activity
             android:name=".CreateLists"
             android:exported="true" />
-        <activity
-            android:name=".shopping_list_display"
-             />
-        <activity
-            android:name=".UserInputForm"
-             />
+        <activity android:name=".shopping_list_display" />
+        <activity android:name=".UserInputForm" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
