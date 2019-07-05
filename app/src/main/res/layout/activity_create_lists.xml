@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E4CF91"
+    android:background="#252525"
     tools:context=".CreateLists">
 
     <TextView
@@ -20,7 +20,7 @@
         android:text="Shopping Lists"
         android:textAllCaps="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Display3"
-        android:textColor="#131212"
+        android:textColor="#F8F6F6"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -59,6 +59,7 @@
         android:layout_marginBottom="8dp"
         android:background="#2196F3"
         android:text="Create"
+        android:textColor="#F8F4F4"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/Lists"
         app:layout_constraintEnd_toEndOf="parent"

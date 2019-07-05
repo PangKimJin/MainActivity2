@@ -2,6 +2,7 @@ package com.example.mainactivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -13,24 +14,46 @@ public class ItemDisplay extends AppCompatActivity {
     Database db;
     EditText name, quantity, price;
     Button btnDelete;
+    Button btnBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         db = new Database(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_display);
         final String itemId = getIntent().getStringExtra("ListViewClickValue");
+        final String shopListID = getIntent().getStringExtra("ShopListID");
         name = findViewById(R.id.editTextName);
         quantity = findViewById(R.id.editTextQuantity);
         price = findViewById(R.id.editTextPrice);
         btnDelete = findViewById(R.id.button_delete);
+        btnBack = findViewById(R.id.button_back);
         Item item = getItem(itemId);
         name.setText("" + item.getName());
         quantity.setText("" + item.getQuantity());
         price.setText("" + item.getPrice());
         DeleteItem(itemId);
+        back(shopListID);
 
 
     }
+    public void back(final String shopListID) {
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                backToShopList(shopListID);
+
+            }
+        });
+    }
+
+    public void backToShopList(String shopListID) {
+        Intent intent = new Intent(this, shopping_list_display.class);
+
+        String id = shopListID;
+        intent.putExtra("ListViewClickValue", id);
+        startActivity(intent);
+    }
+
     public void DeleteItem(final String id) {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override

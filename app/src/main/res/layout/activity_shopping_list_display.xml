@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E4CF91"
+    android:background="#252525"
     tools:context=".shopping_list_display">
 
     <TextView
@@ -18,7 +18,7 @@
         android:layout_marginBottom="8dp"
         android:text="ShopList"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="#0F0F0F"
+        android:textColor="#FDFCFC"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

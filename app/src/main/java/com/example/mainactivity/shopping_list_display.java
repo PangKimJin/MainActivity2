@@ -36,8 +36,10 @@ public class shopping_list_display extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String tempListView =  shopList.get(i).getId() + "";
+
                 Intent intent = new Intent(shopping_list_display.this, ItemDisplay.class);
                 intent.putExtra("ListViewClickValue", tempListView);
+                intent.putExtra("ShopListID", shopListId);
                 startActivity(intent);
             }
         });
