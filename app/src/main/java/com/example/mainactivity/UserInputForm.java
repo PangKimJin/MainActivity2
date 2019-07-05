@@ -51,6 +51,7 @@ public class UserInputForm extends AppCompatActivity {
                         boolean isInserted = db.insertData1(editItem.getText().toString(),
                                 Integer.parseInt(editQuantity.getText().toString()),
                                 Double.parseDouble(editPrice.getText().toString()), id);
+                        backToShopList("" + id);
                         if (isInserted) {
                             Toast.makeText(UserInputForm.this, "ITEM ADDED", Toast.LENGTH_LONG).show();
                         } else {

@@ -51,6 +51,7 @@ public class Create_New_List extends AppCompatActivity {
                     public void onClick(View view) {
                         boolean isInserted = db.insertData2(editList.getText().toString(),
                                 getCurrentDate());
+                        backToShopList();
                         if (isInserted) {
                             Toast.makeText(Create_New_List.this, "LIST CREATED", Toast.LENGTH_LONG).show();
                         } else {

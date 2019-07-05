@@ -65,6 +65,18 @@ public class Database extends SQLiteOpenHelper {
         return res;
     }
 
+    public boolean updateData1(String ID, String name, String quantity, String price, String listID) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_1, ID);
+        contentValues.put(COL_2, name);
+        contentValues.put(COL_3, quantity);
+        contentValues.put(COL_4, price);
+        contentValues.put(COL_5, listID);
+        db.update(TABLE_NAME, contentValues, "ID = ?", new String[] {ID});
+        return true;
+    }
+
     public boolean insertData2(String item, String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();

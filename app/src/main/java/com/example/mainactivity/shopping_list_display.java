@@ -9,20 +9,25 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class shopping_list_display extends AppCompatActivity {
     Database db;
-    Button btn;
+    Button btnAdd;
+    TextView TextViewTitle;
+    Button btnBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_list_display);
         db = new Database(this);
-        btn = findViewById(R.id.button_To_User_Input);
+        btnAdd = findViewById(R.id.button_To_User_Input);
+        btnBack = findViewById(R.id.button_back);
+        TextViewTitle = findViewById(R.id.textViewTitle);
         final String shopListId = getIntent().getStringExtra("ListViewClickValue");
-        btn.setOnClickListener(new View.OnClickListener() {
+        btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openUserInputForm(shopListId);
@@ -30,6 +35,9 @@ public class shopping_list_display extends AppCompatActivity {
         });
         ListView shopListView = findViewById(R.id.shopListView);
         final ArrayList<Item> shopList = populate(Integer.parseInt(shopListId));
+        TextViewTitle.setText(getListName(shopListId));
+
+
         ItemListAdaptor adaptor = new ItemListAdaptor(this, R.layout.shoppinglist_adapter, shopList);
         shopListView.setAdapter(adaptor);
         shopListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -43,6 +51,35 @@ public class shopping_list_display extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        back();
+
+    }
+
+    public void back() {
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                backToShopList();
+
+            }
+        });
+    }
+
+    public void backToShopList() {
+        Intent intent = new Intent(this, CreateLists.class);
+        startActivity(intent);
+    }
+    public String getListName(String ID) {
+        Cursor res = db.getAllData2();
+        String name = "";
+        while(res.moveToNext()) {
+            int listID = Integer.parseInt(res.getString(0));
+            if (listID == Integer.parseInt(ID)) {
+                name = res.getString(1);
+                break;
+            }
+        }
+        return name;
 
     }
     public void openUserInputForm(String shopListID) {

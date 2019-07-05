@@ -44,7 +44,7 @@ public class ItemListAdaptor extends ArrayAdapter<Item> {
         TextView txtQuantity = convertView.findViewById(R.id.quantity);
         TextView txtPrice = convertView.findViewById(R.id.price);
 
-        txtId.setText(Integer.toString(id));
+        txtId.setText(Integer.toString(position + 1));
         txtName.setText(name);
         txtQuantity.setText(Integer.toString(quantity));
         DecimalFormat df = new DecimalFormat();
