@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#252525"
+    tools:ignore="ExtraText">
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,72 +14,166 @@
     android:gravity="center_horizontal"
     tools:context=".MainActivity">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardBackgroundColor="#fff"
-                app:cardUseCompatPadding="true"
-                app:cardCornerRadius="3dp"
-                app:cardElevation="3dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="5dp">
-                    <TextView
-                        android:text="Result"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="20sp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                    <!--The scanned text from image will be displayed here-->
-                    <EditText
-                        android:id="@+id/resultEt"
-                        android:hint=""
-                        android:autoLink="all"
-                        android:background="@null"
-                        android:padding="5dp"
-                        android:textColor="#000"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardBackgroundColor="#fff"
-                app:cardUseCompatPadding="true"
-                app:cardCornerRadius="3dp"
-                app:cardElevation="3dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="5dp">
-                    <TextView
-                        android:text="Image Preview"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="20sp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                    <!--The image taken will be displayed here-->
-                    <ImageView
-                        android:id="@+id/imageIv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:maxHeight="250dp"/>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-            <!--Add insert image button in actionbar menu-->
+    <Button
+        android:id="@+id/button"
+        android:layout_width="169dp"
+        android:layout_height="82dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="My ShopList"
+        android:textAllCaps="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        </LinearLayout>
-    </ScrollView>
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="167dp"
+        android:layout_height="87dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Scan Receipt"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.694" />
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="199dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="ShopList"
+        android:textColor="#FAF5F5"
+        android:textSize="50sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.232" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="146dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Shopping Made Easy!"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.662"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.33" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+<!--<RelativeLayout-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:gravity="center_horizontal"-->
+    <!--tools:context=".MainActivity">-->
+
+    <!--<ScrollView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="vertical">-->
+            <!--<androidx.cardview.widget.CardView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--app:cardBackgroundColor="#fff"-->
+                <!--app:cardUseCompatPadding="true"-->
+                <!--app:cardCornerRadius="3dp"-->
+                <!--app:cardElevation="3dp">-->
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:padding="5dp">-->
+                    <!--<TextView-->
+                        <!--android:text="Result"-->
+                        <!--android:textColor="@color/colorPrimary"-->
+                        <!--android:textSize="20sp"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content" />-->
+                    <!--&lt;!&ndash;The scanned text from image will be displayed here&ndash;&gt;-->
+                    <!--<EditText-->
+                        <!--android:id="@+id/resultEt"-->
+                        <!--android:hint=""-->
+                        <!--android:autoLink="all"-->
+                        <!--android:background="@null"-->
+                        <!--android:padding="5dp"-->
+                        <!--android:textColor="#000"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content" />-->
+                <!--</LinearLayout>-->
+            <!--</androidx.cardview.widget.CardView>-->
+            <!--<androidx.cardview.widget.CardView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--app:cardBackgroundColor="#fff"-->
+                <!--app:cardUseCompatPadding="true"-->
+                <!--app:cardCornerRadius="3dp"-->
+                <!--app:cardElevation="3dp">-->
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:padding="5dp">-->
+                    <!--<TextView-->
+                        <!--android:text="Image Preview"-->
+                        <!--android:textColor="@color/colorPrimary"-->
+                        <!--android:textSize="20sp"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content" />-->
+                    <!--&lt;!&ndash;The image taken will be displayed here&ndash;&gt;-->
+                    <!--<ImageView-->
+                        <!--android:id="@+id/imageIv"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:maxHeight="250dp"/>-->
+                <!--</LinearLayout>-->
+            <!--</androidx.cardview.widget.CardView>-->
+            <!--&lt;!&ndash;Add insert image button in actionbar menu&ndash;&gt;-->
+
+        <!--</LinearLayout>-->
+    <!--</ScrollView>-->
+
+<!--</RelativeLayout>-->
