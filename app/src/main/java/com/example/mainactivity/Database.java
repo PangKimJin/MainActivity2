@@ -28,7 +28,7 @@ public class Database extends SQLiteOpenHelper {
     public static final String TABLE_EXPENDITURE = "Expenditure";
     public static final String Number = "id";
     public static final String EXPENDITURE = "List_Name";
-    public static final String LOCATION = "List_Name";
+    public static final String CATEGORY = "Category";
     public static final String DATE  = "Created_Date";
 
 
@@ -45,6 +45,10 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL("Create Table " + TABLE_LISTS +
                 "(ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "List_Name TEXT, Created_Date DOUBLE)");
+        db.execSQL("Create Table " + TABLE_EXPENDITURE +
+                "(ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "List_Name TEXT, Category TEXT, Created_Date DOUBLE)");
+
     }
 
     @Override
@@ -115,11 +119,11 @@ public class Database extends SQLiteOpenHelper {
 
     }
 
-    public boolean insertData3(String item, String location, String date) {
+    public boolean insertData3(String item, String category, String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(EXPENDITURE, item);
-        contentValues.put(LOCATION, location);
+        contentValues.put(CATEGORY, category);
         contentValues.put(DATE, date);
 
         long result = db.insert(TABLE_EXPENDITURE, null, contentValues);

@@ -23,7 +23,7 @@ public class UserInputForm extends AppCompatActivity {
         editItem = (EditText) findViewById(R.id.editText_Item);
         editQuantity = (EditText) findViewById(R.id.editText_Quantity);
         editPrice = (EditText) findViewById(R.id.editText_Price);
-        btnAddItem = (Button) findViewById(R.id.button_add);
+        btnAddItem = (Button) findViewById(R.id.button_back);
         btnBack =  findViewById(R.id.btn_back);
 
         final String shopListId = getIntent().getStringExtra("ListViewClickValue");

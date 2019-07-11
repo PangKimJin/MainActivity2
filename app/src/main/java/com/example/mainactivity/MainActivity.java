@@ -18,7 +18,8 @@ public class MainActivity extends AppCompatActivity {
 //    private static final int IMAGE_PICK_GALLERY_CODE = 1000;
 //    private static final int IMAGE_PICK_CAMERA_CODE = 1001;
     private Button button;
-    private Button button2;
+    private Button buttonScan;
+    private Button buttonExpenditure;
 //
 //    String cameraPermission[];
 //    String storagePermission[];
@@ -41,17 +42,24 @@ public class MainActivity extends AppCompatActivity {
 //        storagePermission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
         //button from homepage
         button = findViewById(R.id.button);
-        button2 = findViewById(R.id.button2);
+        buttonScan = findViewById(R.id.button_Scan);
+        buttonExpenditure = findViewById(R.id.button_Expenditure);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openUserInput();
             }
         });
-        button2.setOnClickListener(new View.OnClickListener() {
+        buttonScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openImageToTextRecognition();
+            }
+        });
+        buttonExpenditure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openMyPastExpenditure();
             }
         });
     }
@@ -63,6 +71,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void openUserInput() {
         Intent intent = new Intent(this, CreateLists.class);
+        startActivity(intent);
+    }
+
+    public void openMyPastExpenditure() {
+        Intent intent = new Intent(this, MyPastExpenditure.class);
         startActivity(intent);
     }
 
