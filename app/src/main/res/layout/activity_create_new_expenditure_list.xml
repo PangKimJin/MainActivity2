@@ -88,7 +88,7 @@
         app:layout_constraintVertical_bias="0.285" />
 
     <EditText
-        android:id="@+id/editText_Name2"
+        android:id="@+id/editText_Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -128,7 +128,7 @@
         app:layout_constraintVertical_bias="0.468" />
 
     <Button
-        android:id="@+id/btn-back"
+        android:id="@+id/button_back"
         android:layout_width="242dp"
         android:layout_height="49dp"
         android:layout_marginStart="8dp"

@@ -27,7 +27,8 @@ public class CreateNewExpenditureList extends AppCompatActivity {
         db = new Database(this);
         editList = (EditText) findViewById(R.id.editText_Name);
         btnCreateList = findViewById(R.id.button_create);
-        btnBack =  findViewById(R.id.btn_back);
+        editCategory = findViewById(R.id.editText_Category);
+        btnBack =  findViewById(R.id.button_back);
         back();
         createList();
     }
