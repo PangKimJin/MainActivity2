@@ -26,10 +26,17 @@ public class Database extends SQLiteOpenHelper {
     public static final String CREATED_DATE  = "Created_Date";
 
     public static final String TABLE_EXPENDITURE = "Expenditure";
-    public static final String Number = "id";
+    public static final String NUMBER = "id";
     public static final String EXPENDITURE = "List_Name";
     public static final String CATEGORY = "Category";
     public static final String DATE  = "Created_Date";
+
+    public static final String TABLE_ITEMS = "Expenditure Items";
+    public static final String ITEM_ID = "ID";
+    public static final String ITEM_NAME = "ItemName";
+    public static final String ITEM_QUANTITY = "Item_Quantity";
+    public static final String ITEM_PRICE = "Price";
+    public static final String LIST_ID = "Expenditure_List_ID";
 
 
     public Database(@Nullable Context context) {
@@ -48,6 +55,10 @@ public class Database extends SQLiteOpenHelper {
         db.execSQL("Create Table " + TABLE_EXPENDITURE +
                 "(ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "List_Name TEXT, Category TEXT, Created_Date DOUBLE)");
+
+        db.execSQL("Create Table "+TABLE_ITEMS + "(ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "ItemName TEXT, Item_Quantity INTEGER, Price DOUBLE, Expenditure_List_ID INTEGER)");
+
 
     }
 
@@ -142,5 +153,27 @@ public class Database extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(TABLE_EXPENDITURE, "ID = ?", new String[] {id});
 
+    }
+
+    public boolean insertData4(String name, String quantity, String price, String listID) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ITEM_NAME, name);
+        contentValues.put(ITEM_QUANTITY, quantity);
+        contentValues.put(ITEM_PRICE, price);
+        contentValues.put(LIST_ID, listID);
+
+
+        long result = db.insert(TABLE_ITEMS, null, contentValues);
+        if (result == -1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    public Cursor getAllData4() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor result = db.rawQuery("select * from " + TABLE_ITEMS, null);
+        return result;
     }
 }

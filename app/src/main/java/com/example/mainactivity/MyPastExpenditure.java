@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -42,15 +43,15 @@ public class MyPastExpenditure extends AppCompatActivity {
 
         MyPastExpenditureAdaptor adaptor = new MyPastExpenditureAdaptor(MyPastExpenditure.this, R.layout.my_past_expenditure_adaptor, Lists);
         expenditureListView.setAdapter(adaptor);
-//        expenditureListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                String tempListView =  Lists.get(i).getId() + "";
-//                Intent intent = new Intent(MyPastExpenditure.this, shopping_list_display.class);
-//                intent.putExtra("ListViewClickValue", tempListView);
-//                startActivity(intent);
-//            }
-//        });
+        expenditureListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String tempListView =  Lists.get(i).getId() + "";
+                Intent intent = new Intent(MyPastExpenditure.this, ExpenditureListDisplay.class);
+                intent.putExtra("ListViewClickValue", tempListView);
+                startActivity(intent);
+            }
+        });
     }
 
     public void backToHomePage() {
