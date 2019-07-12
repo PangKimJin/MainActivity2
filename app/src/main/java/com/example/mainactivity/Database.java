@@ -34,7 +34,7 @@ public class Database extends SQLiteOpenHelper {
 
     public Database(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);
-        SQLiteDatabase db = getWritableDatabase();
+
     }
 
     @Override

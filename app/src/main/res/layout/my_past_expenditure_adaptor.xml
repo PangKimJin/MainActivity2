@@ -29,23 +29,23 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/location"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_weight="23.3"
-        android:gravity="center"
-        android:text="location"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold" />
-
-    <TextView
         android:id="@+id/date"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_weight="23.3"
         android:gravity="center"
         android:text="Created Date"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_weight="23.3"
+        android:gravity="center"
+        android:text="location"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textStyle="bold" />
