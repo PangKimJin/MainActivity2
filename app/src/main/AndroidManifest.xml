@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".CreateNewExpenditureList"></activity>
         <activity android:name=".MyPastExpenditure" />
         <activity android:name=".ItemDisplay" />
         <activity android:name=".Create_New_List" />

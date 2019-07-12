@@ -1,14 +1,14 @@
 package com.example.mainactivity;
 
 public class ExpenditureList extends List {
-    private String location;
-    public ExpenditureList(int id, String name, String createdDate, String location) {
+    private String category;
+    public ExpenditureList(int id, String name, String createdDate, String category) {
         super(id, name, createdDate);
-        this.location = location;
+        this.category = category;
     }
 
-    public String getLocation() {
-        return location;
+    public String getCategory() {
+        return category;
     }
 
 

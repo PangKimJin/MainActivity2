@@ -28,7 +28,7 @@ public class MyPastExpenditureAdaptor extends ArrayAdapter<ExpenditureList> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         int id = getItem(position).getId();
         String name = getItem(position).getName();
-        String location = getItem(position).getLocation();
+        String location = getItem(position).getCategory();
         String date = getItem(position).getCreatedDate();
 
 
