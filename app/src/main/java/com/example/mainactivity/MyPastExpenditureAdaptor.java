@@ -28,11 +28,11 @@ public class MyPastExpenditureAdaptor extends ArrayAdapter<ExpenditureList> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         int id = getItem(position).getId();
         String name = getItem(position).getName();
-        String location = getItem(position).getCategory();
+        String category = getItem(position).getCategory();
         String date = getItem(position).getCreatedDate();
 
 
-        List list = new List(id, name, date);
+
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
 
@@ -42,9 +42,9 @@ public class MyPastExpenditureAdaptor extends ArrayAdapter<ExpenditureList> {
         TextView txtDate = convertView.findViewById(R.id.date);
 
 
-        txtId.setText(Integer.toString(id));
+        txtId.setText(Integer.toString(position + 1));
         txtName.setText(name);
-        txtLocation.setText(location);
+        txtLocation.setText(category);
         txtDate.setText("" + date);
 
 
