@@ -1,14 +1,19 @@
 package com.example.mainactivity;
 
+import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -16,6 +21,7 @@ public class MyPastExpenditure extends AppCompatActivity {
     Database db;
     Button buttonBack;
     Button buttonAdd;
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +58,28 @@ public class MyPastExpenditure extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //Toolbar Stuff
+        toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("My Expenditure List");
+        setSupportActionBar(toolbar);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_mypastexpenditure,menu);  //inflates the menu_mypastexpenditure to the toolbar
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {       //what happens when the icons are clicked
+        int id = item.getItemId();
+        if (id == R.id.back_toolbar) {                          //back icon is clicked
+            backToHomePage();
+        } else if (id == R.id.add_toolbar) {                    //add icon is clicked
+            openCreateNewExpenditureList();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void backToHomePage() {
