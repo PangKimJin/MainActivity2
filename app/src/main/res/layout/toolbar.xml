@@ -5,6 +5,34 @@
     android:background="@color/colorPrimary"
     android:elevation="4dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-    >
+        >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+
+
+        <Button
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/ic_arrow_back_white_24dp"
+            android:id="@+id/new_toolbar_back"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Expenditure Lists"
+            android:textSize="22sp"
+            android:textColor="#FFFF"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="30dp"/>
+        <Button
+            android:id="@+id/new_toolbar_add"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/ic_add_white_24dp" />
+
+    </RelativeLayout>
 </androidx.appcompat.widget.Toolbar>
