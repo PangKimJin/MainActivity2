@@ -17,6 +17,7 @@
         <activity android:name=".MyPastExpenditure" />
         <activity android:name=".ItemDisplay" />
         <activity android:name=".Create_New_List" />
+        <activity android:name=".ITTR" />
         <activity
             android:name=".CreateLists"
             android:exported="true" />

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -21,6 +22,8 @@ import android.provider.MediaStore;
 import android.util.SparseArray;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -35,6 +38,8 @@ public class ITTR extends AppCompatActivity {
 
     EditText mResultEt;
     ImageView mPreviewIv;
+    Toolbar toolbar;
+    Button toolbarButtonAdd;
 
 
     private static final int CAMERA_REQUEST_CODE = 200;
@@ -50,8 +55,8 @@ public class ITTR extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ittr);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setSubtitle("Click + button to insert image");
+//        ActionBar actionBar = getSupportActionBar();                      //redundant after actionbar is removed
+//        actionBar.setSubtitle("Click + button to insert image");          //redundant after actionbar is removed
 
         mResultEt = findViewById(R.id.resultEt);
         mPreviewIv = findViewById(R.id.imageIv);
@@ -60,6 +65,19 @@ public class ITTR extends AppCompatActivity {
         cameraPermission = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         //storage permission
         storagePermission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
+        //toolbar stuff
+        toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("ITTR");
+        setSupportActionBar(toolbar);
+
+        toolbarButtonAdd = findViewById(R.id.new_toolbar_add);
+//        toolbarButtonAdd.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {                    //this is the method that actually does the opening (find out where its supposed to point to)
+//                openCreateNewExpenditureList();
+//            }
+//        });
     }
 
     //actionbar menu
