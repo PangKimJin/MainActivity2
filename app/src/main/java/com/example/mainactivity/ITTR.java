@@ -39,7 +39,7 @@ public class ITTR extends AppCompatActivity {
     EditText mResultEt;
     ImageView mPreviewIv;
     Toolbar toolbar;
-    Button toolbarButtonAdd;
+
 
 
     private static final int CAMERA_REQUEST_CODE = 200;
@@ -71,13 +71,7 @@ public class ITTR extends AppCompatActivity {
         toolbar.setTitle("ITTR");
         setSupportActionBar(toolbar);
 
-        toolbarButtonAdd = findViewById(R.id.new_toolbar_add);
-//        toolbarButtonAdd.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {                    //this is the method that actually does the opening (find out where its supposed to point to)
-//                openCreateNewExpenditureList();
-//            }
-//        });
+
     }
 
     //actionbar menu
