@@ -38,8 +38,8 @@ public class ITTR extends AppCompatActivity {
 
     EditText mResultEt;
     ImageView mPreviewIv;
-    Toolbar toolbar;
-
+    Toolbar toolbar_ittr;
+    Button toolbar_ittr_back;
 
 
     private static final int CAMERA_REQUEST_CODE = 200;
@@ -67,18 +67,30 @@ public class ITTR extends AppCompatActivity {
         storagePermission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
         //toolbar stuff
-        toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("ITTR");
-        setSupportActionBar(toolbar);
+        toolbar_ittr = findViewById(R.id.toolbar_ittr);
+        toolbar_ittr.setTitle("ITTR");
+        setSupportActionBar(toolbar_ittr);
 
+        toolbar_ittr_back = findViewById(R.id.toolbar_ittr_back);
+        toolbar_ittr_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                backToHomePage();
+            }
+        });
+    }
 
+    public void backToHomePage() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
     //actionbar menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //inflate menu
-        getMenuInflater().inflate(R.menu.menu_main, menu);                              //the menu_main may potentially cause problems
+        getMenuInflater().inflate(R.menu.menu_main, menu);                              //the menu_main provides the add entry button
+
         return true;
     }
     //handle actionbar item clicks
