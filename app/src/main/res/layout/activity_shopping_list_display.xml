@@ -7,6 +7,7 @@
     android:background="#252525"
     tools:context=".shopping_list_display">
 
+
     <TextView
         android:id="@+id/textViewTitle"
         android:layout_width="194dp"

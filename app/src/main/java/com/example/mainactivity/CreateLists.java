@@ -1,6 +1,7 @@
 package com.example.mainactivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -14,8 +15,11 @@ import java.util.ArrayList;
 
 public class CreateLists extends AppCompatActivity {
     Database db;
-    Button btn;
-    Button btnBack;
+//    Button btn;                                                                                   //redundant since the buttons are now in the toolbar
+//    Button btnBack;
+    Toolbar toolbar_create_lists;
+    Button toolbar_create_lists_back;
+    Button toolbar_create_lists_add;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,21 +27,21 @@ public class CreateLists extends AppCompatActivity {
         setContentView(R.layout.activity_create_lists);
         db = new Database(this);
         ListView shopListView = findViewById(R.id.Lists);
-        btn = findViewById(R.id.button_create);
-        btnBack = findViewById(R.id.button_back);
-
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                backToHomePage();
-            }
-        });
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openCreateNewList();
-            }
-        });
+//        btn = findViewById(R.id.button_create);                                                   //redundant since the buttons are now in the toolbar
+//        btnBack = findViewById(R.id.button_back);
+//
+//        btnBack.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                backToHomePage();
+//            }
+//        });
+//        btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                openCreateNewList();
+//            }
+//        });
 
         final ArrayList<List> Lists = populate();
 
@@ -53,6 +57,22 @@ public class CreateLists extends AppCompatActivity {
             }
         });
 
+        //toolbar stuff
+        toolbar_create_lists = findViewById(R.id.toolbar_create_lists);
+        toolbar_create_lists_back = findViewById(R.id.toolbar_create_lists_back);
+        toolbar_create_lists_add = findViewById(R.id.toolbar_create_lists_add);
+        toolbar_create_lists_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                backToHomePage();
+            }
+        });
+        toolbar_create_lists_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openCreateNewList();
+            }
+        });
     }
 
 

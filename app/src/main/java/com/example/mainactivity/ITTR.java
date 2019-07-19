@@ -255,7 +255,7 @@ public class ITTR extends AppCompatActivity {
                 if (!recognizer.isOperational()) {
                     Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
                 }
-                else {
+                else {                                                                                      //this should be the block that handles the text
                     Frame frame = new Frame.Builder().setBitmap(bitmap).build();
                     SparseArray<TextBlock> items = recognizer.detect(frame);
                     StringBuilder sb = new StringBuilder();
@@ -266,7 +266,7 @@ public class ITTR extends AppCompatActivity {
                         sb.append("\n");
                     }
                     //set text to edit text
-                    mResultEt.setText(sb.toString());
+                    mResultEt.setText(sb.toString());                                                       //sb.toString() is the text from the ITTR
                 }
             }
             else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {

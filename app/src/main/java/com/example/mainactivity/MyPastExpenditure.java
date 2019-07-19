@@ -15,8 +15,8 @@ import java.util.ArrayList;
 
 public class MyPastExpenditure extends AppCompatActivity {
     Database db;
-    Button buttonBack;
-    Button buttonAdd;
+//    Button buttonBack;                                                                            //redundant since the buttons are now in the toolbar
+//    Button buttonAdd;
     Toolbar toolbar;
     Button toolbarButtonBack;
     Button toolbarButtonAdd;
@@ -28,21 +28,21 @@ public class MyPastExpenditure extends AppCompatActivity {
 
         db = new Database(this);
         ListView expenditureListView = findViewById(R.id.expenditureList);
-        buttonAdd = findViewById(R.id.button_add);
-        buttonBack = findViewById(R.id.button_back);
-
-        buttonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                backToHomePage();
-            }
-        });
-        buttonAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openCreateNewExpenditureList();
-            }
-        });
+//        buttonAdd = findViewById(R.id.button_add);                                                //redundant since the buttons are now in the toolbar
+//        buttonBack = findViewById(R.id.button_back);
+//
+//        buttonBack.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                backToHomePage();
+//            }
+//        });
+//        buttonAdd.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                openCreateNewExpenditureList();
+//            }
+//        });
 
         final ArrayList<ExpenditureList> Lists = populate();
 
