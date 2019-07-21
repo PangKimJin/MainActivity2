@@ -7,6 +7,10 @@
     android:background="#252525"
     tools:context=".shopping_list_display">
 
+    <include
+        android:id="@+id/toolbar_shopping_list_display"
+        layout="@layout/toolbar_shopping_list_display" />
+
 
     <TextView
         android:id="@+id/textViewTitle"

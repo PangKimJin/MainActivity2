@@ -1,6 +1,7 @@
 package com.example.mainactivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -16,30 +17,36 @@ import java.util.ArrayList;
 
 public class shopping_list_display extends AppCompatActivity {
     Database db;
-    Button btnAdd;
+//    Button btnAdd;
     TextView TextViewTitle;
-    Button btnBack;
-    Button btnDelete;
+//    Button btnBack;
+//    Button btnDelete;
+    Toolbar toolbar_shopping_list_display;
+    Button toolbar_shopping_list_display_back;
+    Button toolbar_shopping_list_display_add;
+    Button toolbar_shopping_list_display_delete;
+    TextView toolbar_shopping_list_display_title;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_list_display);
         db = new Database(this);
-        btnAdd = findViewById(R.id.button_To_User_Input);
-        btnBack = findViewById(R.id.button_back);
+//        btnAdd = findViewById(R.id.button_To_User_Input);
+//        btnBack = findViewById(R.id.button_back);
         TextViewTitle = findViewById(R.id.textViewTitle);
-        btnDelete = findViewById(R.id.button_delete);
+//        btnDelete = findViewById(R.id.button_delete);
 
         final String shopListId = getIntent().getStringExtra("ListViewClickValue");
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openUserInputForm(shopListId);
-            }
-        });
+//        btnAdd.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                openUserInputForm(shopListId);
+//            }
+//        });
         ListView shopListView = findViewById(R.id.shopListView);
         final ArrayList<Item> shopList = populate(Integer.parseInt(shopListId));
-        TextViewTitle.setText(getListName(shopListId));
+
 
 
         ItemListAdaptor adaptor = new ItemListAdaptor(this, R.layout.shoppinglist_adapter, shopList);
@@ -55,13 +62,36 @@ public class shopping_list_display extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        back();
+//        back();
+
+
+        //toolbar stuff
+        toolbar_shopping_list_display = findViewById(R.id.toolbar_shopping_list_display);
+        toolbar_shopping_list_display_back = findViewById(R.id.toolbar_shopping_list_display_back);
+        toolbar_shopping_list_display_add = findViewById(R.id.toolbar_shopping_list_display_add);
+        toolbar_shopping_list_display_delete = findViewById(R.id.toolbar_shopping_list_display_delete);
+        toolbar_shopping_list_display_title = findViewById(R.id.toolbar_shopping_list_display_title);
+
+        toolbar_shopping_list_display_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                backToShopList();
+
+            }
+        });
+        toolbar_shopping_list_display_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openUserInputForm(shopListId);
+            }
+        });
         DeleteItem(shopListId);
 
+        toolbar_shopping_list_display_title.setText(getListName(shopListId));
     }
 
     public void DeleteItem(final String id) {
-        btnDelete.setOnClickListener(new View.OnClickListener() {
+        toolbar_shopping_list_display_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int deletedRow = db.deleteList(id);
@@ -76,15 +106,15 @@ public class shopping_list_display extends AppCompatActivity {
         });
     }
 
-    public void back() {
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                backToShopList();
-
-            }
-        });
-    }
+//    public void back() {
+//        btnBack.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                backToShopList();
+//
+//            }
+//        });
+//    }
 
     public void backToShopList() {
         Intent intent = new Intent(this, CreateLists.class);
