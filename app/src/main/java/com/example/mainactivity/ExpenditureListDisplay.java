@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -34,7 +35,7 @@ public class ExpenditureListDisplay extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openUserInputForm(expenditureListId);
+                openExpenditureListCreateItem(expenditureListId);
             }
         });
         ListView expenditureListView = findViewById(R.id.ExpenditureListView);
@@ -42,10 +43,27 @@ public class ExpenditureListDisplay extends AppCompatActivity {
         TextViewTitle.setText(getListName(expenditureListId));
 
 
-        ItemListAdaptor adaptor = new ItemListAdaptor(this, R.layout.expenditure_list_display_adaptor, expenditureListItems);
+        ExpenditureListDisplayAdaptor adaptor = new ExpenditureListDisplayAdaptor(this, R.layout.expenditure_list_display_adaptor, expenditureListItems);
         expenditureListView.setAdapter(adaptor);
+        DeleteItem(expenditureListId);
 
 
+    }
+
+    public void DeleteItem(final String id) {
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int deletedRow = db.deleteExpenditureList(id);
+                backToMyPastExpenditure();
+                if(deletedRow > 0) {
+                    Toast.makeText(ExpenditureListDisplay.this, "List Successfully Deleted", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(ExpenditureListDisplay.this, "List Deletion Unsuccessful", Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
     }
 
     public void back() {
@@ -63,7 +81,7 @@ public class ExpenditureListDisplay extends AppCompatActivity {
         startActivity(intent);
     }
     public String getListName(String ID) {
-        Cursor res = db.getAllData4();
+        Cursor res = db.getAllData3();
         String name = "";
         while(res.moveToNext()) {
             int listID = Integer.parseInt(res.getString(0));
@@ -75,16 +93,16 @@ public class ExpenditureListDisplay extends AppCompatActivity {
         return name;
 
     }
-    public void openUserInputForm(String shopListID) {
-        Intent intent = new Intent(this, UserInputForm.class);
+    public void openExpenditureListCreateItem(String shopListID) {
+        Intent intent = new Intent(this, ExpenditureListCreateItem.class);
         String id = shopListID;
         intent.putExtra("ListViewClickValue", id);
         startActivity(intent);
     }
 
-    public ArrayList<Item> populate(int shopListID) {
-        Cursor res = db.getAllData1();
-        ArrayList list = new ArrayList();
+    public ArrayList<Item> populate(int expenditureListId) {
+        Cursor res = db.getAllData4();
+        ArrayList<Item> list = new ArrayList();
         if (res.getCount() == 0) {
             //show empty list
 
@@ -93,7 +111,7 @@ public class ExpenditureListDisplay extends AppCompatActivity {
         } else {
             while (res.moveToNext()) {
                 int listID = Integer.parseInt(res.getString(4));
-                if (listID == shopListID) {
+                if (listID == expenditureListId) {
                     int id = Integer.parseInt(res.getString(0));
                     String name = res.getString(1);
                     int quantity = Integer.parseInt(res.getString(2));

@@ -1,3 +1,5 @@
+package com.example.mainactivity;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +17,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class ExpenditureListDisplayAdaptor extends ArrayAdapter<Item> {
-    private static final String TAG = "ExpenditureListDisplayAdaptor";
+    private static final String TAG = "com.example.mainactivity.ExpenditureListDisplayAdaptor";
     private Context mContext;
     int mResource;
 
