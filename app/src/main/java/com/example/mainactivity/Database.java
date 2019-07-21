@@ -156,6 +156,12 @@ public class Database extends SQLiteOpenHelper {
 
     }
 
+    public Integer deleteExpenditureList(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_EXPENDITURE, "ID = ?", new String[] {id});
+
+    }
+
     public boolean insertData4(String name, int quantity, double price, int listID) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();

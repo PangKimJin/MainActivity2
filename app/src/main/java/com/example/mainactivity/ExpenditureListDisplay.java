@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -44,8 +45,25 @@ public class ExpenditureListDisplay extends AppCompatActivity {
 
         ExpenditureListDisplayAdaptor adaptor = new ExpenditureListDisplayAdaptor(this, R.layout.expenditure_list_display_adaptor, expenditureListItems);
         expenditureListView.setAdapter(adaptor);
+        DeleteItem(expenditureListId);
 
 
+    }
+
+    public void DeleteItem(final String id) {
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int deletedRow = db.deleteExpenditureList(id);
+                backToMyPastExpenditure();
+                if(deletedRow > 0) {
+                    Toast.makeText(ExpenditureListDisplay.this, "List Successfully Deleted", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(ExpenditureListDisplay.this, "List Deletion Unsuccessful", Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
     }
 
     public void back() {
