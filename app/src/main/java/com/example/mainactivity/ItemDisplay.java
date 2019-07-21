@@ -1,6 +1,7 @@
 package com.example.mainactivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -13,11 +14,17 @@ import android.widget.Toast;
 public class ItemDisplay extends AppCompatActivity {
     Database db;
     EditText name, quantity, price;
-    Button btnDelete;
-    Button btnEdit;
-    Button btnBack;
+//    Button btnDelete;
+//    Button btnEdit;
+//    Button btnBack;
+    Toolbar toolbar_item_display;
+    Button toolbar_item_display_back;
+    Button toolbar_item_display_delete;
+    Button toolbar_item_display_tick;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //non-toolbar stuff
         db = new Database(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_display);
@@ -26,20 +33,27 @@ public class ItemDisplay extends AppCompatActivity {
         name = findViewById(R.id.editTextName);
         quantity = findViewById(R.id.editTextQuantity);
         price = findViewById(R.id.editTextPrice);
-        btnDelete = findViewById(R.id.button_delete);
-        btnBack = findViewById(R.id.button_back);
-        btnEdit = findViewById(R.id.button_edit);
+//        btnDelete = findViewById(R.id.button_delete);
+//        btnBack = findViewById(R.id.button_back);
+//        btnEdit = findViewById(R.id.button_edit);
         Item item = getItem(itemId);
         name.setText("" + item.getName());
         quantity.setText("" + item.getQuantity());
         price.setText("" + item.getPrice());
+
+
+        //toolbar stuff
+        toolbar_item_display = findViewById(R.id.toolbar_item_display);
+        toolbar_item_display_back = findViewById(R.id.toolbar_item_display_back);
+        toolbar_item_display_delete = findViewById(R.id.toolbar_item_display_delete);
+        toolbar_item_display_tick = findViewById(R.id.toolbar_item_display_tick);
+
         DeleteItem(itemId, shopListID);
         back(shopListID);
         updateData(itemId, shopListID);
-
     }
     public void updateData(final String id, final String listID) {
-        btnEdit.setOnClickListener(new View.OnClickListener() {
+        toolbar_item_display_tick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 boolean isUpdated = db.updateData1(id, name.getText().toString(),
@@ -56,7 +70,7 @@ public class ItemDisplay extends AppCompatActivity {
     }
 
     public void back(final String shopListID) {
-        btnBack.setOnClickListener(new View.OnClickListener() {
+        toolbar_item_display_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 backToShopList(shopListID);
@@ -74,7 +88,7 @@ public class ItemDisplay extends AppCompatActivity {
     }
 
     public void DeleteItem(final String id, final String listID) {
-        btnDelete.setOnClickListener(new View.OnClickListener() {
+        toolbar_item_display_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int deletedRow = db.deleteItem(id);
