@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -45,7 +46,19 @@ public class ExpenditureListDisplay extends AppCompatActivity {
 
         ExpenditureListDisplayAdaptor adaptor = new ExpenditureListDisplayAdaptor(this, R.layout.expenditure_list_display_adaptor, expenditureListItems);
         expenditureListView.setAdapter(adaptor);
+        expenditureListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String tempListView =  expenditureListItems.get(i).getId() + "";
+
+                Intent intent = new Intent(ExpenditureListDisplay.this, ExpenditureItemDisplay.class);
+                intent.putExtra("ListViewClickValue", tempListView);
+                intent.putExtra("ExpenditureListID", expenditureListId);
+                startActivity(intent);
+            }
+        });
         DeleteItem(expenditureListId);
+        back();
 
 
     }

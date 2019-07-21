@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-        <activity android:name=".ExpenditureListCreateItem"></activity>
+        <activity android:name=".ExpenditureItemDisplay"></activity>
+        <activity android:name=".ExpenditureListCreateItem" />
         <activity android:name=".ExpenditureListDisplay" />
         <activity android:name=".CreateNewExpenditureList" />
         <activity android:name=".MyPastExpenditure" />

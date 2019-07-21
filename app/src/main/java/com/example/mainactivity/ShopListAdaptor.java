@@ -40,7 +40,7 @@ public class ShopListAdaptor extends ArrayAdapter<List> {
         TextView txtDate = convertView.findViewById(R.id.CreatedDate);
 
 
-        txtId.setText(Integer.toString(id));
+        txtId.setText(Integer.toString(position + 1));
         txtName.setText(name);
         txtDate.setText("" + date);
 

@@ -30,14 +30,14 @@ public class ExpenditureListCreateItem extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                backToShopList(expenditureListId);
+                backToExpenditureListDisplay(expenditureListId);
             }
         });
         addData(Integer.parseInt(expenditureListId));
     }
 
-    public void backToShopList(String expenditureListId) {
-        Intent intent = new Intent(this, ExpenditureListDisplay.class);
+    public void backToExpenditureListDisplay(String expenditureListId) {
+        Intent intent = new Intent(ExpenditureListCreateItem.this, ExpenditureListDisplay.class);
 
         String id = expenditureListId;
         intent.putExtra("ListViewClickValue", id);
@@ -52,7 +52,7 @@ public class ExpenditureListCreateItem extends AppCompatActivity {
                         boolean isInserted = db.insertData4(editItem.getText().toString(),
                                 Integer.parseInt(editQuantity.getText().toString()),
                                 Double.parseDouble(editPrice.getText().toString()), id);
-                        backToShopList("" + id);
+                        backToExpenditureListDisplay("" + id);
                         if (isInserted) {
                             Toast.makeText(ExpenditureListCreateItem.this, "ITEM ADDED", Toast.LENGTH_LONG).show();
                         } else {

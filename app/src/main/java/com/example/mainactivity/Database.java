@@ -150,11 +150,6 @@ public class Database extends SQLiteOpenHelper {
         Cursor result = db.rawQuery("select * from " + TABLE_EXPENDITURE, null);
         return result;
     }
-    public Integer deleteExpenditure(String id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(TABLE_EXPENDITURE, "ID = ?", new String[] {id});
-
-    }
 
     public Integer deleteExpenditureList(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -182,5 +177,23 @@ public class Database extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor result = db.rawQuery("select * from " + TABLE_ITEMS, null);
         return result;
+    }
+
+    public Integer deleteExpenditureItem(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_ITEMS, "ID = ?", new String[] {id});
+
+    }
+
+    public boolean updateExpenditureItem(String ID, String name, String quantity, String price, String listID) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ITEM_ID, ID);
+        contentValues.put(ITEM_NAME, name);
+        contentValues.put(ITEM_QUANTITY, quantity);
+        contentValues.put(ITEM_PRICE, price);
+        contentValues.put(LIST_ID, listID);
+        db.update(TABLE_ITEMS, contentValues, "ID = ?", new String[] {ID});
+        return true;
     }
 }
