@@ -14,14 +14,17 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class ExpenditureListDisplay extends AppCompatActivity {
     Database db;
     Button btnAdd;
     TextView TextViewTitle;
+    TextView TextView_SubTotal;
     Button btnBack;
     Button btnDelete;
+
     Toolbar toolbar_expenditure_list_display;
     Button toolbar_expenditure_list_display_back;
     Button toolbar_expenditure_list_display_add;
@@ -37,6 +40,7 @@ public class ExpenditureListDisplay extends AppCompatActivity {
         btnAdd = findViewById(R.id.button_CreateExpenditureList);
         btnBack = findViewById(R.id.button_backToMyExpenditures);
         TextViewTitle = findViewById(R.id.textViewTitleExpenditure);
+        TextView_SubTotal = findViewById(R.id.textView_SubTotal);
         btnDelete = findViewById(R.id.button_deleteExpenditureList);
 
         final String expenditureListId = getIntent().getStringExtra("ListViewClickValue");
@@ -64,6 +68,7 @@ public class ExpenditureListDisplay extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         DeleteItem(expenditureListId);
         back();
 
@@ -88,8 +93,20 @@ public class ExpenditureListDisplay extends AppCompatActivity {
             }
         });
         DeleteItem(expenditureListId);
-
+        DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(2);
+        String total = "$" + df.format(getTotal(expenditureListItems));
+        TextView_SubTotal.setText(total);
         toolbar_expenditure_list_display_title.setText(getListName(expenditureListId));
+    }
+
+    public double getTotal(ArrayList<Item> list) {
+        double total = 0.00;
+        for (Item item: list) {
+            double price = item.calculatePrice();
+            total += price;
+        }
+        return total;
     }
 
     public void DeleteItem(final String id) {

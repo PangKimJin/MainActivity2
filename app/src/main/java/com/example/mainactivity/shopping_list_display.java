@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class shopping_list_display extends AppCompatActivity {
@@ -26,6 +27,7 @@ public class shopping_list_display extends AppCompatActivity {
     Button toolbar_shopping_list_display_add;
     Button toolbar_shopping_list_display_delete;
     TextView toolbar_shopping_list_display_title;
+    TextView TextView_subTotal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +73,7 @@ public class shopping_list_display extends AppCompatActivity {
         toolbar_shopping_list_display_add = findViewById(R.id.toolbar_shopping_list_display_add);
         toolbar_shopping_list_display_delete = findViewById(R.id.toolbar_shopping_list_display_delete);
         toolbar_shopping_list_display_title = findViewById(R.id.toolbar_shopping_list_display_title);
+        TextView_subTotal = findViewById(R.id.textView_total);
 
         toolbar_shopping_list_display_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +91,10 @@ public class shopping_list_display extends AppCompatActivity {
         DeleteItem(shopListId);
 
         toolbar_shopping_list_display_title.setText(getListName(shopListId));
+        DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(2);
+        String total = "$" + df.format(getTotal(shopList));
+        TextView_subTotal.setText(total);
     }
 
     public void DeleteItem(final String id) {
@@ -138,6 +145,15 @@ public class shopping_list_display extends AppCompatActivity {
         String id = shopListID;
         intent.putExtra("ListViewClickValue", id);
         startActivity(intent);
+    }
+
+    public double getTotal(ArrayList<Item> list) {
+        double total = 0.00;
+        for (Item item: list) {
+            double price = item.calculatePrice();
+            total += price;
+        }
+        return total;
     }
 
     public ArrayList<Item> populate(int shopListID) {
