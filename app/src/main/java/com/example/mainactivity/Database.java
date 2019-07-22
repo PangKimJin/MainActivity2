@@ -145,6 +145,16 @@ public class Database extends SQLiteOpenHelper {
             return true;
         }
     }
+
+    public int getLatestEntryIDExpenditureList() {
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_EXPENDITURE, null);
+        cursor.moveToLast();
+        int ID = Integer.parseInt(cursor.getString(0));
+        return ID;
+    }
+
+
     public Cursor getAllData3() {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor result = db.rawQuery("select * from " + TABLE_EXPENDITURE, null);
@@ -155,6 +165,18 @@ public class Database extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(TABLE_EXPENDITURE, "ID = ?", new String[] {id});
 
+    }
+
+    public boolean updateExpenditureList(String ID, String name, String category, String date) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(NUMBER, ID);
+        contentValues.put(EXPENDITURE, name);
+        contentValues.put(CATEGORY, category);
+        contentValues.put(DATE, date);
+
+        db.update(TABLE_EXPENDITURE, contentValues, "ID = ?", new String[] {ID});
+        return true;
     }
 
     public boolean insertData4(String name, int quantity, double price, int listID) {

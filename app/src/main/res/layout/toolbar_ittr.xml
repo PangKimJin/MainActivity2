@@ -26,6 +26,13 @@
             android:textColor="#FFFF"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="30dp"/>
+        <Button
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/ic_tick_white_24dp"
+            android:id="@+id/toolbar_ittr_next"
+            android:layout_marginLeft="350dp"/>
 
 
     </RelativeLayout>

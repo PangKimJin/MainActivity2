@@ -14,6 +14,8 @@ import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
@@ -34,12 +36,19 @@ import com.google.android.gms.vision.text.TextRecognizer;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
-public class ITTR extends AppCompatActivity {
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 
+import static java.lang.System.in;
+
+public class ITTR extends AppCompatActivity {
+    Database db;
     EditText mResultEt;
     ImageView mPreviewIv;
     Toolbar toolbar_ittr;
     Button toolbar_ittr_back;
+    Button ittr_next;
 
 
     private static final int CAMERA_REQUEST_CODE = 200;
@@ -57,7 +66,7 @@ public class ITTR extends AppCompatActivity {
         setContentView(R.layout.activity_ittr);
 //        ActionBar actionBar = getSupportActionBar();                      //redundant after actionbar is removed
 //        actionBar.setSubtitle("Click + button to insert image");          //redundant after actionbar is removed
-
+        db = new Database(this);
         mResultEt = findViewById(R.id.resultEt);
         mPreviewIv = findViewById(R.id.imageIv);
 
@@ -72,13 +81,96 @@ public class ITTR extends AppCompatActivity {
         setSupportActionBar(toolbar_ittr);
 
         toolbar_ittr_back = findViewById(R.id.toolbar_ittr_back);
+        ittr_next = findViewById(R.id.ittr_next);
+
         toolbar_ittr_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 backToHomePage();
             }
         });
+
+        ittr_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!mResultEt.getText().toString().equals("")) {
+                    processString(mResultEt.getText().toString());
+                    String expenditureListID = "" + db.getLatestEntryIDExpenditureList();
+                    goToEditExpenditureList(expenditureListID);
+                } else {
+                    Toast.makeText(ITTR.this, "Please add a valid entry", Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
     }
+
+    public void goToEditExpenditureList(String expenditureListID) {
+        Intent intent = new Intent(this, EditExpenditureList.class);
+        String id = expenditureListID;
+        intent.putExtra("ExpenditureListID", id);
+        startActivity(intent);
+    }
+
+    public void processString(String text) {
+        //Creating a default expenditureList
+        db.insertData3("New Expenditure List", "Category", getCurrentDate());
+
+        //Processing text
+        String trimmedText = text.trim();
+        String[] stringArray = trimmedText.split("\\r?\\n");
+        ArrayList<Double> prices = new ArrayList<>();
+        ArrayList<String> names = new ArrayList<>();
+        for (String string: stringArray) {
+            if (isDouble(string)) {
+                Double price = Double.parseDouble(string);
+                prices.add(price);
+            } else {
+                names.add(string);
+            }
+        }
+
+
+        //Creating item objects
+        int ExpenditureListID = db.getLatestEntryIDExpenditureList();
+        ArrayList<Item> items = new ArrayList<>();
+        for (int i = 0; i < names.size(); i++) {
+            Item item = new Item(0, names.get(i), 1, prices.get(i), ExpenditureListID);
+            items.add(item);
+        }
+
+        //Inserting items into database
+        for (Item item: items) {
+            String name = item.getName();
+            int quantity = item.getQuantity();
+            double price = item.getPrice();
+            int ListID = item.getListID();
+            db.insertData4(name, quantity, price, ListID);
+        }
+
+    }
+
+
+
+    public String getCurrentDate() {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat mdformat = new SimpleDateFormat("dd / MM / YYYY ");
+        String strDate = "" + mdformat.format(calendar.getTime());
+        return strDate;
+    }
+
+    public boolean isDouble(String text) {
+        boolean result;
+        try {
+            Double.parseDouble(text);
+            result = true;
+        } catch (Exception e) {
+            result = false;
+        }
+        return result;
+    }
+
+
 
     public void backToHomePage() {
         Intent intent = new Intent(this, MainActivity.class);
