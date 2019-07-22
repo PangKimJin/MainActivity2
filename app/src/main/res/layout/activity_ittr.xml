@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
+    android:background="#252525"
     tools:context=".ITTR">
 
     <include
@@ -34,13 +35,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:background="#252525"
                     android:padding="5dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Result"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="#FFFFFF"
+                        android:background="#252525"
                         android:textSize="20sp" />
                     <!--The scanned text from image will be displayed here-->
                     <EditText
@@ -48,10 +51,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:autoLink="all"
-                        android:background="@null"
+                        android:background="#252525"
                         android:hint=""
                         android:padding="5dp"
-                        android:textColor="#000" />
+                        android:textColor="#FFFFFF" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -68,13 +71,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:background="#252525"
                     android:padding="5dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Image Preview"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="#FFFFFF"
                         android:textSize="20sp" />
                     <!--The image taken will be displayed here-->
                     <ImageView
