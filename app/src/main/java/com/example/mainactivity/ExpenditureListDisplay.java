@@ -69,7 +69,7 @@ public class ExpenditureListDisplay extends AppCompatActivity {
             }
         });
 
-        DeleteItem(expenditureListId);
+
         back();
 
         //toolbar stuff
@@ -110,7 +110,7 @@ public class ExpenditureListDisplay extends AppCompatActivity {
     }
 
     public void DeleteItem(final String id) {
-        btnDelete.setOnClickListener(new View.OnClickListener() {
+        toolbar_expenditure_list_display_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int deletedRow = db.deleteExpenditureList(id);
