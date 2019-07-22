@@ -89,13 +89,13 @@
         </LinearLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/ittr_next"
-        android:layout_width="128dp"
-        android:layout_height="73dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="254dp"
-        android:layout_marginTop="350dp"
-        />
+    <!--<Button-->
+        <!--android:id="@+id/ittr_next"-->
+        <!--android:layout_width="128dp"-->
+        <!--android:layout_height="73dp"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_marginLeft="254dp"-->
+        <!--android:layout_marginTop="350dp"-->
+        <!--/>-->
 
 </RelativeLayout>

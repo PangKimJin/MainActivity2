@@ -81,7 +81,7 @@ public class ITTR extends AppCompatActivity {
         setSupportActionBar(toolbar_ittr);
 
         toolbar_ittr_back = findViewById(R.id.toolbar_ittr_back);
-        ittr_next = findViewById(R.id.ittr_next);
+        ittr_next = findViewById(R.id.menu_main_next);
 
         toolbar_ittr_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,19 +90,19 @@ public class ITTR extends AppCompatActivity {
             }
         });
 
-        ittr_next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!mResultEt.getText().toString().equals("")) {
-                    processString(mResultEt.getText().toString());
-                    String expenditureListID = "" + db.getLatestEntryIDExpenditureList();
-                    goToEditExpenditureList(expenditureListID);
-                } else {
-                    Toast.makeText(ITTR.this, "Please add a valid entry", Toast.LENGTH_LONG).show();
-                }
-
-            }
-        });
+//        ittr_next.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (!mResultEt.getText().toString().equals("")) {
+//                    processString(mResultEt.getText().toString());
+//                    String expenditureListID = "" + db.getLatestEntryIDExpenditureList();
+//                    goToEditExpenditureList(expenditureListID);
+//                } else {
+//                    Toast.makeText(ITTR.this, "Please add a valid entry", Toast.LENGTH_LONG).show();
+//                }
+//
+//            }
+//        });
     }
 
     public void goToEditExpenditureList(String expenditureListID) {
@@ -194,6 +194,15 @@ public class ITTR extends AppCompatActivity {
         }
         if (id == R.id.settings) {
             Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
+        }
+        if (id == R.id.menu_main_next) {
+            if (!mResultEt.getText().toString().equals("")) {
+                processString(mResultEt.getText().toString());
+                String expenditureListID = "" + db.getLatestEntryIDExpenditureList();
+                goToEditExpenditureList(expenditureListID);
+            } else {
+                Toast.makeText(ITTR.this, "Please add a valid entry", Toast.LENGTH_LONG).show();
+            }
         }
 
         return super.onOptionsItemSelected(item);
