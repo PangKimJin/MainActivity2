@@ -1,6 +1,7 @@
 package com.example.mainactivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -21,6 +22,12 @@ public class ExpenditureListDisplay extends AppCompatActivity {
     TextView TextViewTitle;
     Button btnBack;
     Button btnDelete;
+    Toolbar toolbar_expenditure_list_display;
+    Button toolbar_expenditure_list_display_back;
+    Button toolbar_expenditure_list_display_add;
+    Button toolbar_expenditure_list_display_delete;
+    TextView toolbar_expenditure_list_display_title;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         db = new Database(this);
@@ -60,7 +67,29 @@ public class ExpenditureListDisplay extends AppCompatActivity {
         DeleteItem(expenditureListId);
         back();
 
+        //toolbar stuff
+        toolbar_expenditure_list_display = findViewById(R.id.toolbar_shopping_list_display);
+        toolbar_expenditure_list_display_back = findViewById(R.id.toolbar_shopping_list_display_back);
+        toolbar_expenditure_list_display_add = findViewById(R.id.toolbar_shopping_list_display_add);
+        toolbar_expenditure_list_display_delete = findViewById(R.id.toolbar_shopping_list_display_delete);
+        toolbar_expenditure_list_display_title = findViewById(R.id.toolbar_shopping_list_display_title);
 
+        toolbar_expenditure_list_display_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                backToMyPastExpenditure();
+
+            }
+        });
+        toolbar_expenditure_list_display_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openExpenditureListCreateItem(expenditureListId);
+            }
+        });
+        DeleteItem(expenditureListId);
+
+        toolbar_expenditure_list_display_title.setText(getListName(expenditureListId));
     }
 
     public void DeleteItem(final String id) {
