@@ -117,7 +117,7 @@ public class ITTR extends AppCompatActivity {
         db.insertData3("New Expenditure List", "Category", getCurrentDate());
 
         //Processing text
-        String trimmedText = text.trim();
+        String trimmedText = text.trim().replaceAll(",", ".");
         String[] stringArray = trimmedText.split("\\r?\\n");
         ArrayList<Double> prices = new ArrayList<>();
         ArrayList<String> names = new ArrayList<>();
