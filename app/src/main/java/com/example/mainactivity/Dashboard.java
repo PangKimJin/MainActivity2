@@ -124,7 +124,7 @@ Database db;
         barChart.setNoDataText("No data to display");
         barChart.setNoDataTextColor(Color.rgb(255,255,255));
 
-        barChart.animateXY(0, 1500);
+        barChart.animateXY(00, 1500);
 
         barChart.invalidate();                                                                       // refresh
 
