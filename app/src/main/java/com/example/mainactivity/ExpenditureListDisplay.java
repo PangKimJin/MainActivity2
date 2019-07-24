@@ -95,7 +95,7 @@ public class ExpenditureListDisplay extends AppCompatActivity {
         DeleteItem(expenditureListId);
         DecimalFormat df = new DecimalFormat();
         df.setMaximumFractionDigits(2);
-        String total = "$" + df.format(getTotal(expenditureListItems));
+        String total = "$ " + String.format("%.2f", getTotal(expenditureListItems));
         TextView_SubTotal.setText(total);
         toolbar_expenditure_list_display_title.setText(getListName(expenditureListId));
     }

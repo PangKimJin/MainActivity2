@@ -6,6 +6,7 @@ public class Item {
     private double price;
     private int id;
     private int listID;
+    private boolean isSelected;
 
     public Item(int id, String name, int quantity, double price, int listID) {
         this.id = id;
@@ -13,6 +14,19 @@ public class Item {
         this.quantity = quantity;
         this.price = price;
         this.listID = listID;
+        this.isSelected = false;
+
+    }
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void selected() {
+        isSelected = true;
+    }
+
+    public void notSelected() {
+        isSelected = false;
     }
 
     public int getId() {

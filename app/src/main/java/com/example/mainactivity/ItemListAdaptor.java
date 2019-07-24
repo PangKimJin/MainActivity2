@@ -1,6 +1,8 @@
 package com.example.mainactivity;
 
 import android.content.Context;
+import android.graphics.Paint;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +36,8 @@ public class ItemListAdaptor extends ArrayAdapter<Item> {
         String name = getItem(position).getName();
         int quantity = getItem(position).getQuantity();
         double price = getItem(position).getPrice();
+        boolean isBought = getItem(position).isSelected();
+        Log.d("myTag", Boolean.toString(isBought));
 
         Item item = new Item(id, name, quantity, price, 1);
         LayoutInflater inflater = LayoutInflater.from(mContext);
@@ -46,11 +50,20 @@ public class ItemListAdaptor extends ArrayAdapter<Item> {
 
         txtId.setText(Integer.toString(position + 1));
         txtName.setText(name);
+
         txtQuantity.setText(Integer.toString(quantity));
         DecimalFormat df = new DecimalFormat();
         df.setMaximumFractionDigits(2);
-        String total = "$" + df.format(item.calculatePrice());
+        String total = "$ " + String.format("%.2f", price);
         txtPrice.setText(total);
+
+        if (isBought) {
+            txtId.setPaintFlags(txtId.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            txtName.setPaintFlags(txtName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            txtQuantity.setPaintFlags(txtQuantity.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            txtPrice.setPaintFlags(txtPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+        }
 
         return convertView;
     }

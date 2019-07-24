@@ -93,7 +93,7 @@ public class shopping_list_display extends AppCompatActivity {
         toolbar_shopping_list_display_title.setText(getListName(shopListId));
         DecimalFormat df = new DecimalFormat();
         df.setMaximumFractionDigits(2);
-        String total = "$" + df.format(getTotal(shopList));
+        String total = "$ " + String.format("%.2f", getTotal(shopList));
         TextView_subTotal.setText(total);
     }
 

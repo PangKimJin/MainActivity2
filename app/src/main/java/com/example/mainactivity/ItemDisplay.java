@@ -21,6 +21,7 @@ public class ItemDisplay extends AppCompatActivity {
     Button toolbar_item_display_back;
     Button toolbar_item_display_delete;
     Button toolbar_item_display_tick;
+    Button selected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,7 @@ public class ItemDisplay extends AppCompatActivity {
         name = findViewById(R.id.editTextName);
         quantity = findViewById(R.id.editTextQuantity);
         price = findViewById(R.id.editTextPrice);
+        selected = findViewById(R.id.button_GotIt);
 //        btnDelete = findViewById(R.id.button_delete);
 //        btnBack = findViewById(R.id.button_back);
 //        btnEdit = findViewById(R.id.button_edit);
@@ -51,7 +53,18 @@ public class ItemDisplay extends AppCompatActivity {
         DeleteItem(itemId, shopListID);
         back(shopListID);
         updateData(itemId, shopListID);
+        gotIt(item, shopListID);
     }
+    public void gotIt(final Item item, final String shopListID) {
+        selected.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                item.selected();
+                backToShopList(shopListID);
+            }
+        });
+    }
+
     public void updateData(final String id, final String listID) {
         toolbar_item_display_tick.setOnClickListener(new View.OnClickListener() {
             @Override
