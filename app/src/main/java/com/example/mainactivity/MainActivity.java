@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private Button button;
     private Button buttonScan;
     private Button buttonExpenditure;
+    private Button buttonDashboard;
 //
 //    String cameraPermission[];
 //    String storagePermission[];
@@ -44,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         button = findViewById(R.id.button);
         buttonScan = findViewById(R.id.button_Scan);
         buttonExpenditure = findViewById(R.id.button_Expenditure);
+        buttonDashboard = findViewById(R.id.button_dashboard);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,6 +63,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openMyPastExpenditure();
+            }
+        });
+        buttonDashboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDashboard();
             }
         });
     }
@@ -79,6 +88,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openDashboard() {
+        Intent intent = new Intent(this, Dashboard.class);
+        startActivity(intent);
+    }
 
 //    //actionbar menu
 //    @Override
