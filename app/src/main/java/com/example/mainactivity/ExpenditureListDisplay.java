@@ -161,7 +161,7 @@ public class ExpenditureListDisplay extends AppCompatActivity {
 
     public ArrayList<Item> populate(int expenditureListId) {
         Cursor res = db.getAllData4();
-        ArrayList<Item> list = new ArrayList();
+        ArrayList<Item> list = new ArrayList<>();
         if (res.getCount() == 0) {
             //show empty list
 
