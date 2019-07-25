@@ -320,5 +320,46 @@ Database db;
         }
     }
 
+    //Function to get average expenditure per list
+    public double getAverage() {
+        ArrayList<ExpenditureList> expenditureLists = populate();
+        double total = 0.00;
+        int count = expenditureLists.size();
+
+        for(ExpenditureList list: expenditureLists) {
+            int listId = list.getId();
+            ArrayList<Item> items = populateItem(listId);
+            total += getTotal(items);
+        }
+
+        if (count != 0) {
+            return total/count;
+        } else {
+            return 0.00;
+        }
+    }
+
+    //Get average expenditure per month
+
+
+    //Get highest expenditure of a single list
+    public double getHighest() {
+        ArrayList<ExpenditureList> expenditureLists = populate();
+        double highest = 0.00;
+        for(ExpenditureList list: expenditureLists) {
+            int listId = list.getId();
+            ArrayList<Item> items = populateItem(listId);
+            double currTotal = getTotal(items);
+            if (highest < currTotal) {
+                highest = currTotal;
+            }
+        }
+        return highest;
+    }
+
+    
+
+
+
 
 }
