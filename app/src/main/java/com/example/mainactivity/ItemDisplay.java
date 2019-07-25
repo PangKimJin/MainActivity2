@@ -22,6 +22,7 @@ public class ItemDisplay extends AppCompatActivity {
     Button toolbar_item_display_delete;
     Button toolbar_item_display_tick;
     Button selected;
+    boolean isSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,7 @@ public class ItemDisplay extends AppCompatActivity {
         name.setText("" + item.getName());
         quantity.setText("" + item.getQuantity());
         price.setText("" + item.getPrice());
+        isSelected = item.isSelected();
 
 
         //toolbar stuff
@@ -53,14 +55,40 @@ public class ItemDisplay extends AppCompatActivity {
         DeleteItem(itemId, shopListID);
         back(shopListID);
         updateData(itemId, shopListID);
-        gotIt(item, shopListID);
+        gotIt(itemId, shopListID);
+
+        if(isSelected) {
+            selected.setText("UNSELECT");
+        } else {
+            selected.setText("GOT IT!");
+        }
     }
-    public void gotIt(final Item item, final String shopListID) {
+    public void gotIt(final String itemId, final String shopListID) {
         selected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                item.selected();
-                backToShopList(shopListID);
+                if (isSelected) {
+                    boolean isUpdated = db.updateData1(itemId, name.getText().toString(),
+                            quantity.getText().toString(), price.getText().toString(), shopListID, "false");
+                    isSelected = false;
+                    selected.setText("GOT IT!");
+                    backToShopList(shopListID);
+                    if (isUpdated) {
+                        Toast.makeText(ItemDisplay.this, "Item Unselected", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(ItemDisplay.this, "Unable to unselect Item", Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    boolean isUpdated = db.updateData1(itemId, name.getText().toString(),
+                            quantity.getText().toString(), price.getText().toString(), shopListID, "true");
+                    selected.setText("UNSELECT");
+                    backToShopList(shopListID);
+                    if (isUpdated) {
+                        Toast.makeText(ItemDisplay.this, "Item Bought", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(ItemDisplay.this, "Unable to select Item", Toast.LENGTH_LONG).show();
+                    }
+                }
             }
         });
     }
@@ -70,9 +98,9 @@ public class ItemDisplay extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 boolean isUpdated = db.updateData1(id, name.getText().toString(),
-                        quantity.getText().toString(), price.getText().toString(), listID);
+                        quantity.getText().toString(), price.getText().toString(), listID, "false");
                 backToShopList(listID);
-                if(isUpdated == true) {
+                if(isUpdated) {
                     Toast.makeText(ItemDisplay.this, "Item Successfully Updated", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(ItemDisplay.this, "Item Update Unsuccessful", Toast.LENGTH_LONG).show();
@@ -125,14 +153,17 @@ public class ItemDisplay extends AppCompatActivity {
                 String name = res.getString(1);
                 int quantity = Integer.parseInt(res.getString(2));
                 double price = Double.parseDouble(res.getString(3));
+                boolean selected = Boolean.parseBoolean(res.getString(5));
 
-                Item item = new Item(ID, name, quantity, price, 0);
+                Item item = new Item(ID, name, quantity, price, 0, selected);
                 result = item;
             }
 
         }
         return result;
     }
+
+
 }
 
 

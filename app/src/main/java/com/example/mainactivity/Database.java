@@ -19,6 +19,7 @@ public class Database extends SQLiteOpenHelper {
     public static final String COL_3 = "Quantity";
     public static final String COL_4 = "Expected_Price";
     public static final String COL_5 = "List_ID";
+    public static final String COL_6 = "Selected";
 
     public static final String TABLE_LISTS = "Lists";
     public static final String ID = "ID";
@@ -48,7 +49,7 @@ public class Database extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("Create Table " + TABLE_NAME +
                 "(ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "Item_Name TEXT, Quantity INTEGER, Expected_Price DOUBLE, List_ID INTEGER)");
+                "Item_Name TEXT, Quantity INTEGER, Expected_Price DOUBLE, List_ID INTEGER, Selected BOOLEAN)");
         db.execSQL("Create Table " + TABLE_LISTS +
                 "(ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "List_Name TEXT, Created_Date DOUBLE)");
@@ -76,6 +77,7 @@ public class Database extends SQLiteOpenHelper {
         contentValues.put(COL_3, quantity);
         contentValues.put(COL_4, price);
         contentValues.put(COL_5, listID);
+        contentValues.put(COL_6, false);
         long result = db.insert(TABLE_NAME, null, contentValues);
         if (result == -1) {
             return false;
@@ -89,7 +91,7 @@ public class Database extends SQLiteOpenHelper {
         return res;
     }
 
-    public boolean updateData1(String ID, String name, String quantity, String price, String listID) {
+    public boolean updateData1(String ID, String name, String quantity, String price, String listID, String selected) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_1, ID);
@@ -97,6 +99,7 @@ public class Database extends SQLiteOpenHelper {
         contentValues.put(COL_3, quantity);
         contentValues.put(COL_4, price);
         contentValues.put(COL_5, listID);
+        contentValues.put(COL_6, selected);
         db.update(TABLE_NAME, contentValues, "ID = ?", new String[] {ID});
         return true;
     }

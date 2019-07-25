@@ -1,6 +1,7 @@
 package com.example.mainactivity;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -37,9 +38,10 @@ public class ItemListAdaptor extends ArrayAdapter<Item> {
         int quantity = getItem(position).getQuantity();
         double price = getItem(position).getPrice();
         boolean isBought = getItem(position).isSelected();
+
         Log.d("myTag", Boolean.toString(isBought));
 
-        Item item = new Item(id, name, quantity, price, 1);
+
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
 
@@ -58,10 +60,11 @@ public class ItemListAdaptor extends ArrayAdapter<Item> {
         txtPrice.setText(total);
 
         if (isBought) {
-            txtId.setPaintFlags(txtId.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-            txtName.setPaintFlags(txtName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-            txtQuantity.setPaintFlags(txtQuantity.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-            txtPrice.setPaintFlags(txtPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+            txtId.setBackgroundColor(0x9903fc17);
+            txtName.setBackgroundColor(0x9903fc17);
+            txtQuantity.setBackgroundColor(0x9903fc17);
+            txtPrice.setBackgroundColor(0x9903fc17);
 
         }
 

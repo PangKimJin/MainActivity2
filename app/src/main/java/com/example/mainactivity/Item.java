@@ -17,6 +17,16 @@ public class Item {
         this.isSelected = false;
 
     }
+
+    public Item(int id, String name, int quantity, double price, int listID, boolean selected) {
+        this.id = id;
+        this.name = name;
+        this.quantity = quantity;
+        this.price = price;
+        this.listID = listID;
+        this.isSelected = selected;
+
+    }
     public boolean isSelected() {
         return isSelected;
     }
