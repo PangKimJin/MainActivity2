@@ -53,16 +53,6 @@ Database db;
         PieChart pieChart = findViewById(R.id.piechart);
         ArrayList NoOfEmp = getPieChartData();
 
-//        NoOfEmp.add(new PieEntry(945f, "Groceries"));
-//        NoOfEmp.add(new PieEntry(1040f, "Recreational"));
-//        NoOfEmp.add(new PieEntry(1240f, "Transport"));
-//        NoOfEmp.add(new PieEntry(1133f, "Food"));
-//        NoOfEmp.add(new PieEntry(1252f, "Miscellaneous"));
-//        NoOfEmp.add(new PieEntry(1345f, 5));
-//        NoOfEmp.add(new PieEntry(1501f, 6));
-//        NoOfEmp.add(new PieEntry(1545f, 7));
-//        NoOfEmp.add(new PieEntry(1578f, 8));
-//        NoOfEmp.add(new PieEntry(1945f, 9));
         PieDataSet dataSet = new PieDataSet(NoOfEmp, "Categories");
         PieData data;
         data = new PieData(dataSet);
@@ -134,6 +124,7 @@ Database db;
 
     }
 
+    //value formatter to format the chart values to 2 decimal places
     public class MyValueFormatter extends ValueFormatter implements IValueFormatter {
 
         private DecimalFormat mFormat;
