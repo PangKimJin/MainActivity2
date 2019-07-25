@@ -25,13 +25,14 @@
             android:textSize="22sp"
             android:textColor="#FFFF"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="30dp"/>
+            android:layout_marginLeft="30dp"
+/>
         <Button
             android:id="@+id/toolbar_create_lists_add"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="20dp"
             android:background="@drawable/ic_add_white_24dp" />
 
 
