@@ -352,7 +352,6 @@ Database db;
         }
         return highest;
     }
-
     
 
 
