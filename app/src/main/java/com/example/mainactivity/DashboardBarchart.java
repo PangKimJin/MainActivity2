@@ -46,111 +46,111 @@ import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.Hashtable;
 
-public class Dashboard extends AppCompatActivity {
-Database db;
-TextView piechart_title;
-Toolbar toolbar_dashboard_piechart;
-Button toolbar_back;
-Button toolbar_next;
+public class DashboardBarchart extends AppCompatActivity {
+    Database db;
+    TextView barchart_title;
+    Toolbar toolbar_dashboard_piechart;
+    Button toolbar_back;
+    Button toolbar_home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        setContentView(R.layout.activity_dashboard_barchart);
         db = new Database(this);
 
         //Pie Chart Stuff
-        PieChart pieChart = findViewById(R.id.piechart);
-        ArrayList NoOfEmp = getPieChartData();
-
-        PieDataSet dataSet = new PieDataSet(NoOfEmp, "Categories");
-        PieData data;
-        data = new PieData(dataSet);
-        pieChart.setData(data);
-
-        dataSet.setColors(ColorTemplate.LIBERTY_COLORS);
-        dataSet.setValueTextSize(10);
-        dataSet.setValueTextColor(Color.rgb(35,35,35));
-        pieChart.animateXY(1500, 1500);
-        pieChart.getDescription().setPosition(0f,0f);
-        pieChart.setCenterText("Expenditure Breakdown by Category");
-        pieChart.setHoleColor(Color.rgb(35,35,35));
-        pieChart.setCenterTextSize(10);
-        pieChart.setCenterTextColor(Color.rgb(255,255,255));
-        pieChart.getLegend().setTextColor(Color.rgb(255,255,255));
-        pieChart.setNoDataText("No data to display");
-        pieChart.setNoDataTextColor(Color.rgb(255,255,255));
-        pieChart.setEntryLabelTextSize(0);
-        pieChart.getLegend().setTextSize(8);
-
-        Legend pieLegend = pieChart.getLegend();
-        pieLegend.setVerticalAlignment(Legend.LegendVerticalAlignment.CENTER);
-        pieLegend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
-        pieLegend.setOrientation(Legend.LegendOrientation.VERTICAL);
-        pieLegend.setDrawInside(false);
-
-        dataSet.setValueFormatter(new MyValueFormatter());                                           //set the pie chart dataset to that of MyValueFormatter i.e. 2 decimal places
-
-        piechart_title = findViewById(R.id.dashboard_piechart_title);
-        piechart_title.setText("Average Expenditure: $" + getAverage() + "\n" + "Highest Expenditure: $" + getHighest());
+//        PieChart pieChart = findViewById(R.id.piechart);
+//        ArrayList NoOfEmp = getPieChartData();
+//
+//        PieDataSet dataSet = new PieDataSet(NoOfEmp, "Categories");
+//        PieData data;
+//        data = new PieData(dataSet);
+//        pieChart.setData(data);
+//
+//        dataSet.setColors(ColorTemplate.LIBERTY_COLORS);
+//        dataSet.setValueTextSize(10);
+//        dataSet.setValueTextColor(Color.rgb(35,35,35));
+//        pieChart.animateXY(1500, 1500);
+//        pieChart.getDescription().setPosition(0f,0f);
+//        pieChart.setCenterText("Expenditure Breakdown by Category");
+//        pieChart.setHoleColor(Color.rgb(35,35,35));
+//        pieChart.setCenterTextSize(10);
+//        pieChart.setCenterTextColor(Color.rgb(255,255,255));
+//        pieChart.getLegend().setTextColor(Color.rgb(255,255,255));
+//        pieChart.setNoDataText("No data to display");
+//        pieChart.setNoDataTextColor(Color.rgb(255,255,255));
+//        pieChart.setEntryLabelTextSize(0);
+//        pieChart.getLegend().setTextSize(8);
+//
+//        Legend pieLegend = pieChart.getLegend();
+//        pieLegend.setVerticalAlignment(Legend.LegendVerticalAlignment.CENTER);
+//        pieLegend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
+//        pieLegend.setOrientation(Legend.LegendOrientation.VERTICAL);
+//        pieLegend.setDrawInside(false);
+//
+//        dataSet.setValueFormatter(new MyValueFormatter());                                           //set the pie chart dataset to that of MyValueFormatter i.e. 2 decimal places
+//
+        barchart_title = findViewById(R.id.dashboard_piechart_title);
+        barchart_title.setText("Average Expenditure: $" + getAverage() + "\n" + "Highest Expenditure: $" + getHighest());
 
         //toolbar stuff
         toolbar_dashboard_piechart = findViewById(R.id.toolbar_dashboard_piechart);
         toolbar_back = findViewById(R.id.toolbar_dashboard_piechart_back);
-        toolbar_next = findViewById(R.id.toolbar_dashboard_piechart_next);
+        toolbar_home = findViewById(R.id.toolbar_dashboard_piechart_next);
 
         toolbar_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openDashboardPiechart();
+            }
+        });
+        toolbar_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 backToHomePage();
             }
         });
-        toolbar_next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openDashboardBarchart();
-            }
-        });
 
         //Bar Chart Stuff
-//        BarChart barChart = findViewById(R.id.barchart);
-//        ArrayList<BarEntry> entries = getBarChartData();
-//
-//        BarDataSet set = new BarDataSet(entries, "Expenditure");
-//        BarData barData = new BarData(set);
-//        barData.setBarWidth(0.9f);                                                                   // set custom bar width
-//        barChart.setData(barData);
-//        barChart.setFitBars(true);                                                                   // make the x-axis fit exactly all bars
-//        barData.setValueFormatter(new MyValueFormatter());
-//
-//        set.setColors(ColorTemplate.LIBERTY_COLORS);
-//        set.setValueTextSize(10);
-//        set.setValueTextColor(Color.rgb(35,35,35));
-//        barChart.getDescription().setText("Monthly Expenditure Breakdown");
-//        barChart.getDescription().setTextSize(10);
-//        barChart.getDescription().setPosition(750f,30.00f);
-//        barChart.getDescription().setTextColor(Color.rgb(255, 255, 255));           //colours of the description text
-//        barChart.getLegend().setTextColor(Color.rgb(255,255,255));                  //colour of the legend
-//        barChart.getXAxis().setDrawGridLines(false);                                                 //removed the x axis grid lines
-//        barChart.getXAxis().setTextColor(Color.rgb(255,255,255));                   //colour of the x axis (on top)
-//        barChart.getXAxis().setDrawAxisLine(false);
-//        barChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
-//        barChart.getAxisLeft().setTextColor(Color.rgb(255,255,255));                //colour of the y axis
-//        barChart.getAxisRight().setTextColor(Color.rgb(35,35,35));                  //colour of the right side y axis (same as background)
-//        barChart.getAxisRight().setDrawAxisLine(false);
-//        barChart.setDrawValueAboveBar(false);
-//        barChart.getLegend().setEnabled(false);
-//
-//
-//        ArrayList<String> xAxisValues = new ArrayList<>(Arrays.asList("Zero", "Jan", "Feb", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"));
-//        barChart.getXAxis().setValueFormatter(new com.github.mikephil.charting.formatter.IndexAxisValueFormatter(xAxisValues));
-//        barChart.setNoDataText("No data to display");
-//        barChart.setNoDataTextColor(Color.rgb(255,255,255));
-//
-//        barChart.animateXY(00, 1500);
-//
-//        barChart.invalidate();                                                                       // refresh
-//
+        BarChart barChart = findViewById(R.id.barchart);
+        ArrayList<BarEntry> entries = getBarChartData();
+
+        BarDataSet set = new BarDataSet(entries, "Expenditure");
+        BarData barData = new BarData(set);
+        barData.setBarWidth(0.9f);                                                                   // set custom bar width
+        barChart.setData(barData);
+        barChart.setFitBars(true);                                                                   // make the x-axis fit exactly all bars
+        barData.setValueFormatter(new MyValueFormatter());
+
+        set.setColors(ColorTemplate.LIBERTY_COLORS);
+        set.setValueTextSize(10);
+        set.setValueTextColor(Color.rgb(35,35,35));
+        barChart.getDescription().setText("Monthly Expenditure Breakdown");
+        barChart.getDescription().setTextSize(10);
+        barChart.getDescription().setPosition(750f,30.00f);
+        barChart.getDescription().setTextColor(Color.rgb(255, 255, 255));           //colours of the description text
+        barChart.getLegend().setTextColor(Color.rgb(255,255,255));                  //colour of the legend
+        barChart.getXAxis().setDrawGridLines(false);                                                 //removed the x axis grid lines
+        barChart.getXAxis().setTextColor(Color.rgb(255,255,255));                   //colour of the x axis (on top)
+        barChart.getXAxis().setDrawAxisLine(false);
+        barChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+        barChart.getAxisLeft().setTextColor(Color.rgb(255,255,255));                //colour of the y axis
+        barChart.getAxisRight().setTextColor(Color.rgb(35,35,35));                  //colour of the right side y axis (same as background)
+        barChart.getAxisRight().setDrawAxisLine(false);
+        barChart.setDrawValueAboveBar(false);
+        barChart.getLegend().setEnabled(false);
+
+
+        ArrayList<String> xAxisValues = new ArrayList<>(Arrays.asList("Zero", "Jan", "Feb", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"));
+        barChart.getXAxis().setValueFormatter(new com.github.mikephil.charting.formatter.IndexAxisValueFormatter(xAxisValues));
+        barChart.setNoDataText("No data to display");
+        barChart.setNoDataTextColor(Color.rgb(255,255,255));
+
+        barChart.animateXY(00, 1500);
+
+        barChart.invalidate();                                                                       // refresh
+
 
     }
 
@@ -159,8 +159,8 @@ Button toolbar_next;
         startActivity(intent);
     }
 
-    public void openDashboardBarchart() {
-        Intent intent = new Intent(this, DashboardBarchart.class);
+    public void openDashboardPiechart() {
+        Intent intent = new Intent(this, Dashboard.class);
         startActivity(intent);
     }
 
@@ -245,7 +245,7 @@ Button toolbar_next;
 
                 }
             } catch (Exception exception) {
-                Toast.makeText(Dashboard.this, "Something went wrong with the dates", Toast.LENGTH_LONG).show();
+                Toast.makeText(DashboardBarchart.this, "Something went wrong with the dates", Toast.LENGTH_LONG).show();
             }
 
         }
@@ -387,7 +387,7 @@ Button toolbar_next;
         }
         return highest;
     }
-    
+
 
 
 

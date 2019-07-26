@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#0B2A33"
+    android:elevation="4dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <Button
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/ic_arrow_back_white_24dp"
+            android:id="@+id/toolbar_dashboard_piechart_back"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Expenditure Breakdown"
+            android:textSize="22sp"
+            android:textColor="#FFFFFF"
+            android:layout_marginLeft="30dp"/>
+
+        <Button
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/ic_arrow_forward_white_24dp"
+            android:id="@+id/toolbar_dashboard_piechart_next"/>
+    </RelativeLayout>
+</androidx.appcompat.widget.Toolbar>

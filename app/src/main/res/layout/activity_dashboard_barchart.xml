@@ -18,20 +18,20 @@
         android:layout_marginLeft="8dp"
         android:layout_marginTop="64dp"/>
 
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/piechart"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="240dp"
-        android:background="#252525"
-    />
-    <!--<com.github.mikephil.charting.charts.BarChart-->
-        <!--android:id="@+id/barchart"-->
+    <!--<com.github.mikephil.charting.charts.PieChart-->
+        <!--android:id="@+id/piechart"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="300dp"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_marginBottom="64dp"-->
+        <!--android:layout_marginTop="240dp"-->
         <!--android:background="#252525"-->
-        <!--android:layout_marginStart="8dp"-->
-        <!--android:layout_marginLeft="8dp" />-->
+        <!--/>-->
+    <com.github.mikephil.charting.charts.BarChart
+    android:id="@+id/barchart"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:layout_alignParentBottom="true"
+    android:layout_marginBottom="64dp"
+    android:background="#252525"
+    android:layout_marginStart="8dp"
+    android:layout_marginLeft="8dp" />
 </RelativeLayout>
