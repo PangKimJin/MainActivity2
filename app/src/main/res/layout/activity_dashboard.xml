@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#252525">
+    android:background="#0f3b52">
 
     <include
         android:id="@+id/toolbar_dashboard_piechart"
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_marginTop="240dp"
-        android:background="#252525"
+        android:background="#0f3b52"
     />
     <!--<com.github.mikephil.charting.charts.BarChart-->
         <!--android:id="@+id/barchart"-->

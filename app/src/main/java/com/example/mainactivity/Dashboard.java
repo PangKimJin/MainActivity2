@@ -74,7 +74,7 @@ Button toolbar_next;
         pieChart.animateXY(1500, 1500);
         pieChart.getDescription().setPosition(0f,0f);
         pieChart.setCenterText("Expenditure Breakdown by Category");
-        pieChart.setHoleColor(Color.rgb(35,35,35));
+        pieChart.setHoleColor(Color.rgb(15,59,82));
         pieChart.setCenterTextSize(10);
         pieChart.setCenterTextColor(Color.rgb(255,255,255));
         pieChart.getLegend().setTextColor(Color.rgb(255,255,255));
