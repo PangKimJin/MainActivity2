@@ -3,6 +3,7 @@ package com.example.mainactivity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,7 @@ public class UserInputForm extends AppCompatActivity {
     EditText editItem, editPrice, editQuantity;
     Button btnAddItem;
     Button btnBack;
+    Button findPrices;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +27,15 @@ public class UserInputForm extends AppCompatActivity {
         editPrice = (EditText) findViewById(R.id.editText_Price);
         btnAddItem = (Button) findViewById(R.id.button_back);
         btnBack =  findViewById(R.id.btn_back);
+        findPrices = findViewById(R.id.button_create_findPriceFromNTUC);
 
+        findPrices.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url = "https://www.fairprice.com.sg/searchterm/" + editItem.getText();
+                openWebURL(url);
+            }
+        });
         final String shopListId = getIntent().getStringExtra("ListViewClickValue");
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,6 +44,11 @@ public class UserInputForm extends AppCompatActivity {
             }
         });
         addData(Integer.parseInt(shopListId));
+    }
+    public void openWebURL( String inURL ) {
+        Intent browse = new Intent( Intent.ACTION_VIEW , Uri.parse( inURL ) );
+
+        startActivity( browse );
     }
     public void backToShopList(String shopListID) {
         Intent intent = new Intent(this, shopping_list_display.class);

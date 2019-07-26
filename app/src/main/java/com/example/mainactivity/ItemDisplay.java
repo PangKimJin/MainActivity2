@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +23,7 @@ public class ItemDisplay extends AppCompatActivity {
     Button toolbar_item_display_delete;
     Button toolbar_item_display_tick;
     Button selected;
+    Button findPrices;
     boolean isSelected;
 
     @Override
@@ -36,16 +38,25 @@ public class ItemDisplay extends AppCompatActivity {
         quantity = findViewById(R.id.editTextQuantity);
         price = findViewById(R.id.editTextPrice);
         selected = findViewById(R.id.button_GotIt);
+        findPrices = findViewById(R.id.button_findPriceFromNTUC);
 //        btnDelete = findViewById(R.id.button_delete);
 //        btnBack = findViewById(R.id.button_back);
 //        btnEdit = findViewById(R.id.button_edit);
+
+
         Item item = getItem(itemId);
         name.setText("" + item.getName());
         quantity.setText("" + item.getQuantity());
         price.setText(String.format("%.2f", item.getPrice()));
         isSelected = item.isSelected();
 
-
+        findPrices.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url = "https://www.fairprice.com.sg/searchterm/" + name.getText();
+                openWebURL(url);
+            }
+        });
         //toolbar stuff
         toolbar_item_display = findViewById(R.id.toolbar_item_display);
         toolbar_item_display_back = findViewById(R.id.toolbar_item_display_back);
@@ -67,6 +78,12 @@ public class ItemDisplay extends AppCompatActivity {
 
         }
     }
+    public void openWebURL( String inURL ) {
+        Intent browse = new Intent( Intent.ACTION_VIEW , Uri.parse( inURL ) );
+
+        startActivity( browse );
+    }
+
     public void gotIt(final String itemId, final String shopListID) {
         selected.setOnClickListener(new View.OnClickListener() {
             @Override

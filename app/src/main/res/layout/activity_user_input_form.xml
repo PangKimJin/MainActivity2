@@ -177,6 +177,29 @@ tools:context=".UserInputForm">
     app:layout_constraintVertical_bias="0.529" />
 
     <Button
+        android:id="@+id/button_create_findPriceFromNTUC"
+        android:layout_width="191dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/buttonshape"
+        android:drawableLeft="@android:drawable/ic_menu_search"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:text="Search  NTUC Prices"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar_item_display"
+        app:layout_constraintVertical_bias="0.409" />
+    <Button
         android:id="@+id/btn-back"
         android:layout_width="242dp"
         android:layout_height="49dp"
