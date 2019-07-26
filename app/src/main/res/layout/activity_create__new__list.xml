@@ -87,7 +87,6 @@
         android:shadowRadius="5"
         android:text=" Create"
         android:textColor="#FFFFFF"
-        android:drawableLeft="@android:drawable/"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

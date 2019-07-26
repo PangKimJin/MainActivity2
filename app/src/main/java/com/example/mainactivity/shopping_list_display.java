@@ -2,6 +2,7 @@ package com.example.mainactivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -36,6 +37,7 @@ public class shopping_list_display extends AppCompatActivity {
     TextView TextView_subTotal;
     boolean selected = false;
     ArrayList<Item> list;
+    SwipeRefreshLayout pullToRefresh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +81,7 @@ public class shopping_list_display extends AppCompatActivity {
 
 
         //toolbar stuff
+        pullToRefresh = findViewById(R.id.pullToRefresh_shoppingList);
         toolbar_shopping_list_display = findViewById(R.id.toolbar_shopping_list_display);
         toolbar_shopping_list_display_back = findViewById(R.id.toolbar_shopping_list_display_back);
         toolbar_shopping_list_display_add = findViewById(R.id.toolbar_shopping_list_display_add);
@@ -122,6 +125,18 @@ public class shopping_list_display extends AppCompatActivity {
         String total = "$ " + String.format("%.2f", getTotal(shopList));
         TextView_subTotal.setText(total);
 
+        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+
+            @Override
+            public void onRefresh() {
+                list = populate(Integer.parseInt(shopListId));
+                final ArrayList<Item> expenditureList =  list;
+                ItemListAdaptor adaptor = new ItemListAdaptor(shopping_list_display.this, R.layout.shoppinglist_adapter, shopList);
+                shopListView.setAdapter(adaptor);
+                adaptor.notifyDataSetChanged();
+                pullToRefresh.setRefreshing(false);
+            }
+        });
         button_selectAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
