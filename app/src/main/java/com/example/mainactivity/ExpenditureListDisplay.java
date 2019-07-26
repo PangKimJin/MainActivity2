@@ -2,6 +2,7 @@ package com.example.mainactivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -24,12 +25,15 @@ public class ExpenditureListDisplay extends AppCompatActivity {
     TextView TextView_SubTotal;
     Button btnBack;
     Button btnDelete;
+    SwipeRefreshLayout pullToRefresh;
 
     Toolbar toolbar_expenditure_list_display;
     Button toolbar_expenditure_list_display_back;
     Button toolbar_expenditure_list_display_add;
     Button toolbar_expenditure_list_display_delete;
     TextView toolbar_expenditure_list_display_title;
+    ArrayList<Item> updatedList;
+    ListView expenditureListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +41,14 @@ public class ExpenditureListDisplay extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expenditure_list_display);
 
+        pullToRefresh = findViewById(R.id.pullToRefresh);
         btnAdd = findViewById(R.id.button_CreateExpenditureList);
         btnBack = findViewById(R.id.button_backToMyExpenditures);
         TextViewTitle = findViewById(R.id.textViewTitleExpenditure);
         TextView_SubTotal = findViewById(R.id.textView_SubTotal);
         btnDelete = findViewById(R.id.button_deleteExpenditureList);
 
+        int Refreshcounter = 1; //Counting how many times user have refreshed the layout
         final String expenditureListId = getIntent().getStringExtra("ListViewClickValue");
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,12 +56,13 @@ public class ExpenditureListDisplay extends AppCompatActivity {
                 openExpenditureListCreateItem(expenditureListId);
             }
         });
-        ListView expenditureListView = findViewById(R.id.ExpenditureListView);
-        final ArrayList<Item> expenditureListItems = populate(Integer.parseInt(expenditureListId));
+        expenditureListView = findViewById(R.id.ExpenditureListView);
+        updatedList = populate(Integer.parseInt(expenditureListId));
+        final ArrayList<Item> expenditureListItems = updatedList;
         TextViewTitle.setText(getListName(expenditureListId));
 
 
-        ExpenditureListDisplayAdaptor adaptor = new ExpenditureListDisplayAdaptor(this, R.layout.expenditure_list_display_adaptor, expenditureListItems);
+        final ExpenditureListDisplayAdaptor adaptor = new ExpenditureListDisplayAdaptor(this, R.layout.expenditure_list_display_adaptor, expenditureListItems);
         expenditureListView.setAdapter(adaptor);
         expenditureListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -98,6 +105,20 @@ public class ExpenditureListDisplay extends AppCompatActivity {
         String total = "$ " + String.format("%.2f", getTotal(expenditureListItems));
         TextView_SubTotal.setText(total);
         toolbar_expenditure_list_display_title.setText(getListName(expenditureListId));
+
+        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+
+            @Override
+            public void onRefresh() {
+                updatedList = populate(Integer.parseInt(expenditureListId));
+                final ArrayList<Item> expenditureList =  updatedList;
+                ExpenditureListDisplayAdaptor adaptor = new ExpenditureListDisplayAdaptor(ExpenditureListDisplay.this, R.layout.expenditure_list_display_adaptor, expenditureList);
+                expenditureListView.setAdapter(adaptor);
+                adaptor.notifyDataSetChanged();
+                pullToRefresh.setRefreshing(false);
+            }
+        });
+
     }
 
     public double getTotal(ArrayList<Item> list) {
