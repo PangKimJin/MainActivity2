@@ -17,10 +17,9 @@ public class EditExpenditureList extends AppCompatActivity {
     //    Button btnDelete;
 //    Button btnEdit;
 //    Button btnBack;
-    Toolbar toolbar_item_display;
-    Button toolbar_item_display_back;
-
-    Button toolbar_item_display_tick;
+    Toolbar toolbar_edit_expenditure_list;
+    Button toolbar_edit_expenditure_list_back;
+    Button toolbar_edit_expenditure_list_tick;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,10 +41,9 @@ public class EditExpenditureList extends AppCompatActivity {
 
 
         //toolbar stuff
-        toolbar_item_display = findViewById(R.id.toolbar_item_display);
-        toolbar_item_display_back = findViewById(R.id.toolbar_item_display_back);
-
-        toolbar_item_display_tick = findViewById(R.id.toolbar_item_display_tick);
+        toolbar_edit_expenditure_list = findViewById(R.id.toolbar_edit_expenditure_list);
+        toolbar_edit_expenditure_list_back = findViewById(R.id.toolbar_edit_expenditure_list_back);
+        toolbar_edit_expenditure_list_tick = findViewById(R.id.toolbar_edit_expenditure_list_tick);
 
 //        DeleteItem(itemId, expenditureListID);
 //        back(expenditureListID);
@@ -53,7 +51,7 @@ public class EditExpenditureList extends AppCompatActivity {
     }
 
     public void updateData(final String id) {
-        toolbar_item_display_tick.setOnClickListener(new View.OnClickListener() {
+        toolbar_edit_expenditure_list_tick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 boolean isUpdated = db.updateExpenditureList(id, name.getText().toString(),

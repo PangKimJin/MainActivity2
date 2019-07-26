@@ -17,7 +17,7 @@
             android:layout_height="24dp"
             android:layout_alignParentLeft="true"
             android:background="@drawable/ic_arrow_back_white_24dp"
-            android:id="@+id/new_toolbar_back"/>
+            android:id="@+id/new_toolbar_back" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="20dp"
             android:background="@drawable/ic_add_white_24dp" />
 
     </RelativeLayout>

@@ -8,8 +8,8 @@
     tools:context=".ItemDisplay">
 
     <include
-        android:id="@+id/toolbar_item_display"
-        layout="@layout/toolbar_item_display" />
+        android:id="@+id/toolbar_edit_expenditure_list"
+        layout="@layout/toolbar_edit_expenditure_list" />
 
     <TextView
         android:id="@+id/textView7"

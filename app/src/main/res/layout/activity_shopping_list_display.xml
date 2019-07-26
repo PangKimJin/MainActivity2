@@ -55,7 +55,7 @@
 
     <ListView
         android:id="@+id/shopListView"
-        android:layout_width="395dp"
+        android:layout_width="match_parent"
         android:layout_height="540dp"
 
 
@@ -117,9 +117,10 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:text="SubTotal: "
+        android:text="SUBTOTAL: "
         android:textColor="#FAF8F7F7"
         android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.588"

@@ -23,11 +23,14 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.formatter.IValueFormatter;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.lang.reflect.Array;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Collection;
@@ -45,33 +48,21 @@ Database db;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         db = new Database(this);
+
         //Pie Chart Stuff
         PieChart pieChart = findViewById(R.id.piechart);
-        ArrayList NoOfEmp = new ArrayList();
+        ArrayList NoOfEmp = getPieChartData();
 
-        NoOfEmp.add(new PieEntry(945f, "Groceries"));
-        NoOfEmp.add(new PieEntry(1040f, "Recreational"));
-        NoOfEmp.add(new PieEntry(1240f, "Transport"));
-        NoOfEmp.add(new PieEntry(1133f, "Food"));
-        NoOfEmp.add(new PieEntry(1252f, "Miscellaneous"));
-//        NoOfEmp.add(new PieEntry(1345f, 5));
-//        NoOfEmp.add(new PieEntry(1501f, 6));
-//        NoOfEmp.add(new PieEntry(1545f, 7));
-//        NoOfEmp.add(new PieEntry(1578f, 8));
-//        NoOfEmp.add(new PieEntry(1945f, 9));
         PieDataSet dataSet = new PieDataSet(NoOfEmp, "Categories");
         PieData data;
         data = new PieData(dataSet);
         pieChart.setData(data);
 
-
         dataSet.setColors(ColorTemplate.LIBERTY_COLORS);
         dataSet.setValueTextSize(10);
         dataSet.setValueTextColor(Color.rgb(35,35,35));
         pieChart.animateXY(1500, 1500);
-//        pieChart.getDescription().setText("Expenditure Breakdown by Category");
         pieChart.getDescription().setPosition(0f,0f);
-//        pieChart.setUsePercentValues(true);
         pieChart.setCenterText("Expenditure Breakdown by Category");
         pieChart.setHoleColor(Color.rgb(35,35,35));
         pieChart.setCenterTextSize(10);
@@ -88,6 +79,7 @@ Database db;
         pieLegend.setOrientation(Legend.LegendOrientation.VERTICAL);
         pieLegend.setDrawInside(false);
 
+        dataSet.setValueFormatter(new MyValueFormatter());                                           //set the pie chart dataset to that of MyValueFormatter i.e. 2 decimal places
 
         //Bar Chart Stuff
         BarChart barChart = findViewById(R.id.barchart);
@@ -98,6 +90,7 @@ Database db;
         barData.setBarWidth(0.9f);                                                                   // set custom bar width
         barChart.setData(barData);
         barChart.setFitBars(true);                                                                   // make the x-axis fit exactly all bars
+        barData.setValueFormatter(new MyValueFormatter());
 
 //        set.setColor(Color.rgb(255,255,255));                                       //colours of the bars
         set.setColors(ColorTemplate.LIBERTY_COLORS);
@@ -128,21 +121,23 @@ Database db;
 
         barChart.invalidate();                                                                       // refresh
 
-//        ArrayList<String> xAxisLabels = new ArrayList<>();
-//        xAxisLabels.add("January");
-//        xAxisLabels.add("February");
-//        xAxisLabels.add("March");
-//        final ArrayList<String> xLabels = xAxisLabels;
-//
-//
-//        XAxis xAxis = barChart.getXAxis();
-//        xAxis.setValueFormatter(new IAxisValueFormatter() {
-//            @Override
-//            public String getFormattedValue(float value, AxisBase axis) {
-//
-//                return xLabels.get((int) value);
-//            }
-//        });
+
+    }
+
+    //value formatter to format the chart values to 2 decimal places
+    public class MyValueFormatter extends ValueFormatter implements IValueFormatter {
+
+        private DecimalFormat mFormat;
+
+        public MyValueFormatter() {
+            mFormat = new DecimalFormat("###,###,##0.0"); // use one decimal
+        }
+
+        @Override
+        public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+            // write your logic here
+            return mFormat.format(value) + " $"; // e.g. append a dollar-sign
+        }
     }
 
     //Returns arrayList for pie chart, according to category

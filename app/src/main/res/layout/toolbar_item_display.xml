@@ -31,17 +31,14 @@
             android:layout_height="24dp"
             android:background="@drawable/ic_delete_white_24dp"
             android:id="@+id/toolbar_item_display_delete"
-            android:layout_marginLeft="280dp"
-            android:layout_marginStart="280dp"/>
+            android:layout_marginLeft="260dp"
+            android:layout_marginStart="260dp"/>
         <Button
             android:id="@+id/toolbar_item_display_tick"
             android:layout_width="24dp"
             android:layout_height="24dp"
+            android:layout_marginRight="20dp"
             android:layout_alignParentRight="true"
-            android:background="@drawable/ic_tick_white_24dp"
-             /> //change to tick
-
-
-
+            android:background="@drawable/ic_tick_white_24dp" />
     </RelativeLayout>
 </androidx.appcompat.widget.Toolbar>
