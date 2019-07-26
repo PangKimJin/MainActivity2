@@ -97,6 +97,7 @@ public class shopping_list_display extends AppCompatActivity {
             public void onClick(View view) {
 
                 checkOut(list, getListName(shopListId));
+                unSelectAll(shopList);
             }
         });
 
