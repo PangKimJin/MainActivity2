@@ -51,7 +51,7 @@ public class ExpenditureListDisplayAdaptor extends ArrayAdapter<Item> {
         txtQuantity.setText(Integer.toString(quantity));
         DecimalFormat df = new DecimalFormat();
         df.setMaximumFractionDigits(2);
-        String total = "$" + df.format(item.calculatePrice());
+        String total = "$" + String.format("%.2f", price);
         txtPrice.setText(total);
 
         return convertView;

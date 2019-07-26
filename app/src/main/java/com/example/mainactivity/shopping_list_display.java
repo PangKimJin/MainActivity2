@@ -129,10 +129,12 @@ public class shopping_list_display extends AppCompatActivity {
                     unSelectAll(shopList);
                     selected = false;
                     button_selectAll.setText("SELECT ALL");
+                    button_selectAll.setBackgroundResource(R.drawable.greenbuttonshape);
                 } else {
                     selectAll(shopList);
                     selected = true;
                     button_selectAll.setText("UNSELECT ALL");
+                    button_selectAll.setBackgroundResource(R.drawable.redbuttonshape);
                 }
                 list = populate(Integer.parseInt(shopListId));
                 final ArrayList<Item> shopList =  list;

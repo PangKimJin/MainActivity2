@@ -42,7 +42,7 @@ public class ItemDisplay extends AppCompatActivity {
         Item item = getItem(itemId);
         name.setText("" + item.getName());
         quantity.setText("" + item.getQuantity());
-        price.setText("" + item.getPrice());
+        price.setText(String.format("%.2f", item.getPrice()));
         isSelected = item.isSelected();
 
 
@@ -59,8 +59,12 @@ public class ItemDisplay extends AppCompatActivity {
 
         if(isSelected) {
             selected.setText("UNSELECT");
+            selected.setBackgroundResource(R.drawable.redbuttonshape);
+
         } else {
             selected.setText("GOT IT!");
+            selected.setBackgroundResource(R.drawable.greenbuttonshape);
+
         }
     }
     public void gotIt(final String itemId, final String shopListID) {
