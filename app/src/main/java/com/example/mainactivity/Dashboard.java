@@ -364,7 +364,9 @@ Button toolbar_next;
         }
 
         if (count != 0) {
-            return total/count;
+            double hundred_times = total/count * 100;
+            double hundred_times_rounded = Math.round(hundred_times);
+            return hundred_times_rounded/100;
         } else {
             return 0.00;
         }

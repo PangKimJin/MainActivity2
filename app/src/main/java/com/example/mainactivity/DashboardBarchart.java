@@ -94,6 +94,7 @@ public class DashboardBarchart extends AppCompatActivity {
         barchart_title = findViewById(R.id.dashboard_piechart_title);
         barchart_title.setText("Average Expenditure: $" + getAverage() + "\n" + "Highest Expenditure: $" + getHighest());
 
+
         //toolbar stuff
         toolbar_dashboard_piechart = findViewById(R.id.toolbar_dashboard_piechart);
         toolbar_back = findViewById(R.id.toolbar_dashboard_piechart_back);
@@ -125,7 +126,7 @@ public class DashboardBarchart extends AppCompatActivity {
 
         set.setColors(ColorTemplate.LIBERTY_COLORS);
         set.setValueTextSize(10);
-        set.setValueTextColor(Color.rgb(35,35,35));
+        set.setValueTextColor(Color.rgb(15,59,82));
         barChart.getDescription().setText("Monthly Expenditure Breakdown");
         barChart.getDescription().setTextSize(10);
         barChart.getDescription().setPosition(750f,30.00f);
@@ -136,7 +137,7 @@ public class DashboardBarchart extends AppCompatActivity {
         barChart.getXAxis().setDrawAxisLine(false);
         barChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
         barChart.getAxisLeft().setTextColor(Color.rgb(255,255,255));                //colour of the y axis
-        barChart.getAxisRight().setTextColor(Color.rgb(35,35,35));                  //colour of the right side y axis (same as background)
+        barChart.getAxisRight().setTextColor(Color.rgb(15,59,82));                  //colour of the right side y axis (same as background)
         barChart.getAxisRight().setDrawAxisLine(false);
         barChart.setDrawValueAboveBar(false);
         barChart.getLegend().setEnabled(false);
@@ -364,7 +365,9 @@ public class DashboardBarchart extends AppCompatActivity {
         }
 
         if (count != 0) {
-            return total/count;
+            double hundred_times = total/count * 100;
+            double hundred_times_rounded = Math.round(hundred_times);
+            return hundred_times_rounded/100;
         } else {
             return 0.00;
         }
