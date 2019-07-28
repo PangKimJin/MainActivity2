@@ -64,7 +64,7 @@ public class EditShopList extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 boolean isUpdated = db.updateShopList(id, name.getText().toString(), date.getText().toString());
-                backToShopListDisplay(id);
+                backToShopList();
                 if(isUpdated == true) {
                     Toast.makeText(EditShopList.this, "List Successfully Updated", Toast.LENGTH_LONG).show();
                 } else {

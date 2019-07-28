@@ -129,14 +129,14 @@ public class Database extends SQLiteOpenHelper {
         return result;
     }
 
-    public boolean updateShopList(String ID, String name, String date) {
+    public boolean updateShopList(String Id, String name, String date) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(ID, ID);
+        contentValues.put(ID, Id);
         contentValues.put(NAME, name);
         contentValues.put(CREATED_DATE, date);
 
-        db.update(TABLE_LISTS, contentValues, "ID = ?", new String[] {ID});
+        db.update(TABLE_LISTS, contentValues, "ID = ?", new String[] {Id});
         return true;
     }
     public Integer deleteItem(String id) {
