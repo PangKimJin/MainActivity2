@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="72dp"
-            android:text="Edit Expenditure List"
+            android:text="Edit List"
             android:textColor="#FFFF"
             android:textSize="22sp" />
     </RelativeLayout>

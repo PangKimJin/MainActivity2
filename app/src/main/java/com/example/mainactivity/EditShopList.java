@@ -49,7 +49,7 @@ public class EditShopList extends AppCompatActivity {
         toolbar_edit_expenditure_list_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                backToExpenditureList();
+                backToShopList();
 
             }
         });
@@ -85,8 +85,8 @@ public class EditShopList extends AppCompatActivity {
 //        });
 //    }
 
-    public void backToExpenditureList() {
-        Intent intent = new Intent(this, MyPastExpenditure.class);
+    public void backToShopList() {
+        Intent intent = new Intent(this, CreateLists.class);
         startActivity(intent);
     }
 
