@@ -128,6 +128,17 @@ public class Database extends SQLiteOpenHelper {
         Cursor result = db.rawQuery("select * from " + TABLE_LISTS, null);
         return result;
     }
+
+    public boolean updateShopList(String ID, String name, String date) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ID, ID);
+        contentValues.put(NAME, name);
+        contentValues.put(CREATED_DATE, date);
+
+        db.update(TABLE_LISTS, contentValues, "ID = ?", new String[] {ID});
+        return true;
+    }
     public Integer deleteItem(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(TABLE_NAME, "ID = ?", new String[] {id});

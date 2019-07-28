@@ -47,6 +47,16 @@ public class CreateLists extends AppCompatActivity {
 
         ShopListAdaptor adaptor = new ShopListAdaptor(this, R.layout.create_lists_adaptor, Lists);
         shopListView.setAdapter(adaptor);
+        shopListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String tempListView =  Lists.get(i).getId() + "";
+                Intent intent = new Intent(CreateLists.this, EditShopList.class);
+                intent.putExtra("ShopListID", tempListView);
+                startActivity(intent);
+                return true;
+            }
+        });
         shopListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
