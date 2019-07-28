@@ -56,7 +56,7 @@ public class ItemListAdaptor extends ArrayAdapter<Item> {
         txtQuantity.setText(Integer.toString(quantity));
         DecimalFormat df = new DecimalFormat();
         df.setMaximumFractionDigits(2);
-        String total = "$ " + String.format("%.2f", price);
+        String total = "$ " + String.format("%.2f", price * quantity);
         txtPrice.setText(total);
 
         if (isBought) {

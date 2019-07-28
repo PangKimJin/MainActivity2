@@ -21,7 +21,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Expenditure Breakdown"
+            android:text="Dashboard"
             android:textSize="22sp"
             android:textColor="#FFFFFF"
             android:layout_marginLeft="30dp"/>

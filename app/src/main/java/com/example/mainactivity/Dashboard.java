@@ -73,7 +73,7 @@ Button toolbar_next;
         dataSet.setValueTextColor(Color.rgb(35,35,35));
         pieChart.animateXY(1500, 1500);
         pieChart.getDescription().setPosition(0f,0f);
-        pieChart.setCenterText("Expenditure Breakdown by Category");
+        pieChart.setCenterText("Average Expenditure: $" + getAverage() + "\n" + "Highest Expenditure: $" + getHighest());
         pieChart.setHoleColor(Color.rgb(15,59,82));
         pieChart.setCenterTextSize(10);
         pieChart.setCenterTextColor(Color.rgb(255,255,255));
@@ -93,7 +93,7 @@ Button toolbar_next;
 
         piechart_title = findViewById(R.id.dashboard_piechart_title);
         piechart_title.setText("Average Expenditure: $" + getAverage() + "\n" + "Highest Expenditure: $" + getHighest());
-
+        piechart_title.setTextSize(14);
         //toolbar stuff
         toolbar_dashboard_piechart = findViewById(R.id.toolbar_dashboard_piechart);
         toolbar_back = findViewById(R.id.toolbar_dashboard_piechart_back);
@@ -111,6 +111,49 @@ Button toolbar_next;
                 openDashboardBarchart();
             }
         });
+
+        toolbar_dashboard_piechart = findViewById(R.id.toolbar_dashboard_piechart);
+        toolbar_back = findViewById(R.id.toolbar_dashboard_piechart_back);
+
+
+        //Bar Chart Stuff
+        BarChart barChart = findViewById(R.id.barchart);
+        ArrayList<BarEntry> entries = getBarChartData();
+
+        BarDataSet set = new BarDataSet(entries, "Expenditure");
+        BarData barData = new BarData(set);
+        barData.setBarWidth(0.9f);                                                                   // set custom bar width
+        barChart.setData(barData);
+        barChart.setFitBars(true);                                                                   // make the x-axis fit exactly all bars
+        barData.setValueFormatter(new Dashboard.MyValueFormatter());
+
+        set.setColors(ColorTemplate.LIBERTY_COLORS);
+        set.setValueTextSize(10);
+        set.setValueTextColor(Color.rgb(15,59,82));
+        //barChart.getDescription().setText("Monthly Expenditure Breakdown");
+        barChart.getDescription().setTextSize(10);
+        barChart.getDescription().setPosition(750f,30.00f);
+        barChart.getDescription().setTextColor(Color.rgb(15, 59, 82));           //colours of the description text
+        barChart.getLegend().setTextColor(Color.rgb(255,255,255));                  //colour of the legend
+        barChart.getXAxis().setDrawGridLines(false);                                                 //removed the x axis grid lines
+        barChart.getXAxis().setTextColor(Color.rgb(255,255,255));                   //colour of the x axis (on top)
+        barChart.getXAxis().setDrawAxisLine(false);
+        barChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+        barChart.getAxisLeft().setTextColor(Color.rgb(255,255,255));                //colour of the y axis
+        barChart.getAxisRight().setTextColor(Color.rgb(15,59,82));                  //colour of the right side y axis (same as background)
+        barChart.getAxisRight().setDrawAxisLine(false);
+        barChart.setDrawValueAboveBar(false);
+        barChart.getLegend().setEnabled(false);
+
+
+        ArrayList<String> xAxisValues = new ArrayList<>(Arrays.asList("Zero", "Jan", "Feb", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"));
+        barChart.getXAxis().setValueFormatter(new com.github.mikephil.charting.formatter.IndexAxisValueFormatter(xAxisValues));
+        barChart.setNoDataText("No data to display");
+        barChart.setNoDataTextColor(Color.rgb(255,255,255));
+
+        barChart.animateXY(00, 1500);
+
+        barChart.invalidate();
 
         //Bar Chart Stuff
 //        BarChart barChart = findViewById(R.id.barchart);
@@ -170,7 +213,7 @@ Button toolbar_next;
         private DecimalFormat mFormat;
 
         public MyValueFormatter() {
-            mFormat = new DecimalFormat("###,###,##0.0"); // use one decimal
+            mFormat = new DecimalFormat("#.00"); // use one decimal
         }
 
         @Override

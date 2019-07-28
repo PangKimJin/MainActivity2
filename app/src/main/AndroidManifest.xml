@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".DashboardBarchart"></activity>
+        <activity android:name=".EditExpenditureListLongHold"></activity>
+        <activity android:name=".DashboardBarchart" />
         <activity android:name=".DashboardSlide" />
         <activity android:name=".Dashboard" />
         <activity android:name=".EditExpenditureList" />

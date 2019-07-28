@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class EditExpenditureList extends AppCompatActivity {
+public class EditExpenditureListLongHold extends AppCompatActivity {
     Database db;
     EditText name, category, date;
     //    Button btnDelete;
@@ -24,15 +24,15 @@ public class EditExpenditureList extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_expenditure_list);
+        setContentView(R.layout.activity_edit_expenditure_list_long_hold);
 
         db = new Database(this);
 
         final String expenditureListID = getIntent().getStringExtra("ExpenditureListID");
-        name = findViewById(R.id.editText_name_expenditureList);
-        category = findViewById(R.id.editText_category_expenditureList);
-        date = findViewById(R.id.editText_date_expenditureList);
-        button_editExpenditureList = findViewById(R.id.button_editExpenditureList);
+        name = findViewById(R.id.editText_name_expenditureListLongHold);
+        category = findViewById(R.id.editText_category_expenditureListLongHold);
+        date = findViewById(R.id.editText_date_expenditureListLongHold);
+        button_editExpenditureList = findViewById(R.id.button_editExpenditureListLongHold);
 //        btnDelete = findViewById(R.id.button_delete);
 //        btnBack = findViewById(R.id.button_back);
 //        btnEdit = findViewById(R.id.button_edit);
@@ -50,13 +50,7 @@ public class EditExpenditureList extends AppCompatActivity {
         toolbar_edit_expenditure_list_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int isDeleted = db.deleteExpenditureList(expenditureListID);
                 backToExpenditureList();
-                if(isDeleted > 0) {
-                   Toast.makeText(EditExpenditureList.this, "Expenditure List is not created", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(EditExpenditureList.this, "Database problem", Toast.LENGTH_LONG).show();
-                }
 
             }
         });
@@ -74,9 +68,9 @@ public class EditExpenditureList extends AppCompatActivity {
                         category.getText().toString(), date.getText().toString());
                 backToExpenditureListDisplay(id);
                 if(isUpdated == true) {
-                    Toast.makeText(EditExpenditureList.this, "List Successfully Updated", Toast.LENGTH_LONG).show();
+                    Toast.makeText(EditExpenditureListLongHold.this, "List Successfully Updated", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(EditExpenditureList.this, "List Update Unsuccessful", Toast.LENGTH_LONG).show();
+                    Toast.makeText(EditExpenditureListLongHold.this, "List Update Unsuccessful", Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -106,7 +100,7 @@ public class EditExpenditureList extends AppCompatActivity {
         startActivity(intent);
     }
 
-//    public void DeleteItem(final String id, final String listID) {
+    //    public void DeleteItem(final String id, final String listID) {
 //        toolbar_item_display_delete.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {

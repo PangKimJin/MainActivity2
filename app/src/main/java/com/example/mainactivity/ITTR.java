@@ -114,38 +114,42 @@ public class ITTR extends AppCompatActivity {
 
     public void processString(String text) {
         //Creating a default expenditureList
-        db.insertData3("New Expenditure List", "Category", getCurrentDate());
+        try {
+            db.insertData3("New Expenditure List", "Category", getCurrentDate());
 
-        //Processing text
-        String trimmedText = text.trim().replaceAll(",", ".");
-        String[] stringArray = trimmedText.split("\\r?\\n");
-        ArrayList<Double> prices = new ArrayList<>();
-        ArrayList<String> names = new ArrayList<>();
-        for (String string: stringArray) {
-            if (isDouble(string)) {
-                Double price = Double.parseDouble(string);
-                prices.add(price);
-            } else {
-                names.add(string);
+            //Processing text
+            String trimmedText = text.trim().replaceAll(",", ".");
+            String[] stringArray = trimmedText.split("\\r?\\n");
+            ArrayList<Double> prices = new ArrayList<>();
+            ArrayList<String> names = new ArrayList<>();
+            for (String string : stringArray) {
+                if (isDouble(string)) {
+                    Double price = Double.parseDouble(string);
+                    prices.add(price);
+                } else {
+                    names.add(string);
+                }
             }
-        }
 
 
-        //Creating item objects
-        int ExpenditureListID = db.getLatestEntryIDExpenditureList();
-        ArrayList<Item> items = new ArrayList<>();
-        for (int i = 0; i < names.size(); i++) {
-            Item item = new Item(0, names.get(i), 1, prices.get(i), ExpenditureListID);
-            items.add(item);
-        }
+            //Creating item objects
+            int ExpenditureListID = db.getLatestEntryIDExpenditureList();
+            ArrayList<Item> items = new ArrayList<>();
+            for (int i = 0; i < names.size(); i++) {
+                Item item = new Item(0, names.get(i), 1, prices.get(i), ExpenditureListID);
+                items.add(item);
+            }
 
-        //Inserting items into database
-        for (Item item: items) {
-            String name = item.getName();
-            int quantity = item.getQuantity();
-            double price = item.getPrice();
-            int ListID = item.getListID();
-            db.insertData4(name, quantity, price, ListID);
+            //Inserting items into database
+            for (Item item : items) {
+                String name = item.getName();
+                int quantity = item.getQuantity();
+                double price = item.getPrice();
+                int ListID = item.getListID();
+                db.insertData4(name, quantity, price, ListID);
+            }
+        } catch (Exception ex) {
+            Toast.makeText(ITTR.this, "Please take a clear image and crop properly", Toast.LENGTH_LONG).show();
         }
 
     }

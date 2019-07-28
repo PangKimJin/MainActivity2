@@ -48,6 +48,16 @@ public class MyPastExpenditure extends AppCompatActivity {
 
         MyPastExpenditureAdaptor adaptor = new MyPastExpenditureAdaptor(MyPastExpenditure.this, R.layout.my_past_expenditure_adaptor, Lists);
         expenditureListView.setAdapter(adaptor);
+        expenditureListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String tempListView =  Lists.get(i).getId() + "";
+                Intent intent = new Intent(MyPastExpenditure.this, EditExpenditureListLongHold.class);
+                intent.putExtra("ExpenditureListID", tempListView);
+                startActivity(intent);
+                return true;
+            }
+        });
         expenditureListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

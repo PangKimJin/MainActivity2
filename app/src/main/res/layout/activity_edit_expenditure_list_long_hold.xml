@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0f3b52"
-    tools:context=".ItemDisplay">
+    tools:context=".EditExpenditureListLongHold">
 
     <include
         android:id="@+id/toolbar_edit_expenditure_list"
@@ -13,7 +13,7 @@
 
 
     <Button
-        android:id="@+id/button_editExpenditureList"
+        android:id="@+id/button_editExpenditureListLongHold"
         android:layout_width="242dp"
         android:layout_height="49dp"
         android:layout_marginStart="8dp"
@@ -28,7 +28,7 @@
         android:shadowDx="0"
         android:shadowDy="0"
         android:shadowRadius="5"
-        android:text=" Create"
+        android:text=" Done"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +38,7 @@
         app:layout_constraintVertical_bias="0.55" />
 
     <EditText
-        android:id="@+id/editText_name_expenditureList"
+        android:id="@+id/editText_name_expenditureListLongHold"
         android:layout_width="247dp"
         android:layout_height="44dp"
         android:layout_marginStart="8dp"
@@ -64,7 +64,7 @@
         app:layout_constraintVertical_bias="0.189" />
 
     <EditText
-        android:id="@+id/editText_category_expenditureList"
+        android:id="@+id/editText_category_expenditureListLongHold"
         android:layout_width="247dp"
         android:layout_height="44dp"
         android:layout_marginStart="8dp"
@@ -89,7 +89,7 @@
         app:layout_constraintVertical_bias="0.3"  />
 
     <EditText
-        android:id="@+id/editText_date_expenditureList"
+        android:id="@+id/editText_date_expenditureListLongHold"
         android:layout_width="247dp"
         android:layout_height="44dp"
         android:layout_marginStart="8dp"
@@ -153,21 +153,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.007" />
 
-    <!--<Button-->
-    <!--android:id="@+id/button_back"-->
-    <!--android:layout_width="264dp"-->
-    <!--android:layout_height="37dp"-->
-    <!--android:layout_marginStart="8dp"-->
-    <!--android:layout_marginLeft="8dp"-->
-    <!--android:layout_marginTop="8dp"-->
-    <!--android:layout_marginEnd="8dp"-->
-    <!--android:layout_marginRight="8dp"-->
-    <!--android:layout_marginBottom="8dp"-->
-    <!--android:text="Back To Shopping List"-->
-    <!--app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--app:layout_constraintEnd_toEndOf="parent"-->
-    <!--app:layout_constraintHorizontal_bias="0.519"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toTopOf="parent"-->
-    <!--app:layout_constraintVertical_bias="0.372" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>
