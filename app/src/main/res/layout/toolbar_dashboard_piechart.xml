@@ -18,20 +18,14 @@
             android:layout_alignParentLeft="true"
             android:background="@drawable/ic_arrow_back_white_24dp"
             android:id="@+id/toolbar_dashboard_piechart_back"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
             android:text="Dashboard"
-            android:textSize="22sp"
             android:textColor="#FFFFFF"
-            android:layout_marginLeft="30dp"/>
+            android:textSize="22sp" />
 
-        <Button
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/ic_arrow_forward_white_24dp"
-            android:id="@+id/toolbar_dashboard_piechart_next"/>
     </RelativeLayout>
 </androidx.appcompat.widget.Toolbar>
