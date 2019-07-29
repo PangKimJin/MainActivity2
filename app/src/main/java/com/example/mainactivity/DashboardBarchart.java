@@ -98,7 +98,7 @@ public class DashboardBarchart extends AppCompatActivity {
         //toolbar stuff
         toolbar_dashboard_piechart = findViewById(R.id.toolbar_dashboard_piechart);
         toolbar_back = findViewById(R.id.toolbar_dashboard_piechart_back);
-        toolbar_home = findViewById(R.id.toolbar_dashboard_piechart_next);
+
 
         toolbar_back.setOnClickListener(new View.OnClickListener() {
             @Override

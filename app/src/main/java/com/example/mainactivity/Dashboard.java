@@ -51,7 +51,7 @@ Database db;
 TextView piechart_title;
 Toolbar toolbar_dashboard_piechart;
 Button toolbar_back;
-Button toolbar_next;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +97,7 @@ Button toolbar_next;
         //toolbar stuff
         toolbar_dashboard_piechart = findViewById(R.id.toolbar_dashboard_piechart);
         toolbar_back = findViewById(R.id.toolbar_dashboard_piechart_back);
-        toolbar_next = findViewById(R.id.toolbar_dashboard_piechart_next);
+
 
         toolbar_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,12 +105,7 @@ Button toolbar_next;
                 backToHomePage();
             }
         });
-        toolbar_next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openDashboardBarchart();
-            }
-        });
+
 
         toolbar_dashboard_piechart = findViewById(R.id.toolbar_dashboard_piechart);
         toolbar_back = findViewById(R.id.toolbar_dashboard_piechart_back);
